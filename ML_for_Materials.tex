@@ -1,4 +1,4 @@
-% Created 2022-06-16 Thu 08:24
+% Created 2022-06-16 Thu 10:56
 % Intended LaTeX compiler: pdflatex
 \documentclass[10pt, compress]{beamer}
 \usepackage[utf8]{inputenc}
@@ -36,7 +36,7 @@
 \end{frame}
 
 \section{AI Background}
-\label{sec:org6d9fe30}
+\label{sec:orgf9c13d2}
 \begin{frame}[allowframebreaks]{Artificial Intelligence}
 \begin{block}{The Four Approached to AI}
 \begin{center}
@@ -62,7 +62,7 @@ Acting Humanly & Acting Rationally\\
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:org5f52d2c}]{Machine Learning}
+\begin{frame}[allowframebreaks]{Machine Learning}
 \begin{block}{ML Contributes to AI}
 \begin{itemize}
 \item Adaptable \alert{agent}
@@ -84,8 +84,23 @@ Acting Humanly & Acting Rationally\\
 \item[{percept sequence}] history of sensory input
 \end{description}
 \end{definition}
+\begin{block}{Supervised Training}
+Encourage the agent to behave "correctly"
+\begin{enumerate}
+\item Minimize Loss
+\item Maximize Score
+\end{enumerate}
+\end{block}
+\begin{block}{Unsupervised Training}
+The agent determines something principally true about its environment
+using mathematical/logical characterization methods.
+\begin{itemize}
+\item find eigenvectors and eigenvalues
+\item differentially calculate optima
+\end{itemize}
+\end{block}
 \end{frame}
-\begin{frame}[label={sec:orgb72da13}]{Inverse Design}
+\begin{frame}[label={sec:org69c98a3}]{Inverse Design}
 \begin{block}{A Type of AI Implementation}
 \begin{description}
 \item[{senses}] maps points in many dimensions
@@ -93,23 +108,17 @@ Acting Humanly & Acting Rationally\\
 \item[{action}] returns its findings to human interpreters
 \end{description}
 \end{block}
-\begin{block}{Train Consequentially}
-\begin{enumerate}
-\item Minimize Loss
-\item Maximize Score
-\end{enumerate}
-\end{block}
 \end{frame}
 \section{Chemistry Background}
-\label{sec:org67eb681}
-\begin{frame}[label={sec:orgc23004d}]{Perovskite Structure and Chemistry}
+\label{sec:org785718e}
+\begin{frame}[label={sec:orga57d7e2}]{Perovskite Structure and Chemistry}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{cubic_perovskite.png}
 \caption{Example of hybrid organic-inorganic MAPbI\textsubscript{3} \cite{mannodi-kanakkithodi-2022-data-driven}}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:org16cacb2}]{Our Dataset}
+\begin{frame}[label={sec:orgb76f320}]{Our Dataset}
 \begin{columns}
 \begin{column}{0.35\columnwidth}
 \begin{block}{DFT Simulations}
@@ -171,8 +180,8 @@ MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
 \end{columns}
 \end{frame}
 \section{Pipeline}
-\label{sec:org78ce262}
-\begin{frame}[label={sec:orgb9045fa}]{Data Pre-Processing}
+\label{sec:orgd3aaf55}
+\begin{frame}[label={sec:orga019957}]{Data Pre-Processing}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=300]{./data_proc.png}
@@ -180,7 +189,7 @@ MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org8584cb5}]{Machine Learning Pipeline}
+\begin{frame}[label={sec:orge285cd8}]{Machine Learning Pipeline}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=300]{./ML_pipe.png}
@@ -192,10 +201,147 @@ MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
 \small
 \lstinputlisting[language=Python]{pretty_pipeline.py}
 \end{frame}
-\section{Reference}
-\label{sec:org0bbdce4}
-\begin{frame}[allowframebreaks]{Reference}
+\section{Feature Engineering}
+\label{sec:org3f385f4}
+\begin{frame}[label={sec:orga920cf0}]{PCA}
+\begin{columns}
+\begin{column}{0.8\columnwidth}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=200]{comp_ratio_projection.png}
+\caption{Learn transformation matrix \(U\) to diagonalizes the matrix \(A\). The Principal Components in \(Q\) corresponding to the largest two Singular Values in \(S\) contain the majority of the variance in the data.}
+\end{figure}
+\end{column}
+\begin{column}{0.2\columnwidth}
+\[
+UAU^\dag = Q^{-1}SQ
+\]
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[label={sec:org803ea7c}]{tSNE}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=200]{tsne_comp_DecoE_clusters.png}
+\caption{Learn a low-dimensional (2 or 3D) embedding space in which statistical similarity governs the proximity of high-dimensional data points}
+\end{figure}
+\end{frame}
+\begin{frame}[label={sec:org81b1a08}]{UMAP}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=200]{umap_projection.png}
+\caption{Learn a manifold embedding space in which nearest neighbors form clusters}
+\end{figure}
+\end{frame}
+\section{Supervised Architectures}
+\label{sec:orgc4b5fd0}
+\begin{frame}[allowframebreaks]{Linear regression on BG}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=185]{linear_bg_c.png}
+\caption{OLS determines \(\vec{w}\) so that \(f(x) = \vec{x}^T\vec{w}\), \(y_i = f(x_i) + \epsilon_i\) and all \(\epsilon\)\textsubscript{i} are as small as possible}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=185]{elastic_bg_c.png}
+\caption{elasticnet determines \(\vec{w}\) as before, but also works to sparsify the model}
+\end{figure}
+\end{frame}
+\begin{frame}[label={sec:org70bcf12}]{OLS weights}
+\begin{columns}
+\begin{column}{0.7\columnwidth}
+\begin{center}
+\begin{tabular}{llr}
+site & element & \\
+\hline
+A & Cs & 23.771206\\
+A & FA & 25.794831\\
+A & K & 22.774475\\
+A & MA & 25.452629\\
+A & Rb & 23.282988\\
+B & Ba & -32.603053\\
+B & Ca & -31.378385\\
+B & Ge & -45.001044\\
+B & Pb & -42.526511\\
+B & Sn & -46.868114\\
+B & Sr & -32.068490\\
+X & Br & 0.939374\\
+X & Cl & 1.769032\\
+X & I & 0.140658\\
+\end{tabular}
+\end{center}
+.
+\end{column}
+\begin{column}{0.3\columnwidth}
+\begin{center}
+\begin{tabular}{lr}
+ & RSS\\
+\hline
+A & 54.213044\\
+B & 95.426246\\
+X & 2.007905\\
+\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[label={sec:orga62a4f9}]{elasticnet weights}
+\begin{columns}
+\begin{column}{0.7\columnwidth}
+\begin{center}
+\begin{tabular}{llr}
+site & element & \\
+\hline
+A & Cs & -0.191057\\
+A & FA & 1.589015\\
+A & K & -1.081903\\
+A & MA & 1.214167\\
+A & Rb & -0.530437\\
+B & Ba & 5.139688\\
+B & Ca & 6.424156\\
+B & Ge & -5.879154\\
+B & Pb & -3.673012\\
+B & Sn & -7.689152\\
+B & Sr & 5.678253\\
+X & Br & 0.000000\\
+X & Cl & 0.819669\\
+X & I & -0.786942\\
+\end{tabular}
+\end{center}
+\end{column}
+\begin{column}{0.3\columnwidth}
+\begin{center}
+\begin{tabular}{lr}
+ & RSS\\
+\hline
+A & 2.342552\\
+B & 14.391222\\
+X & 1.136281\\
+\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Gaussian Process or BG}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=185]{gpr_bg_c.png}
+\caption{GPR picks functions from a distribution derived from the data covariance. The functions that satisfy the data form the fit.}
+\end{figure}
+\begin{block}{Regularization with Priors}
+\begin{description}
+\item[{Conditional Probablity}] \(P(x|y) = \frac{P(x)P(y|x)}{P(x)}\)
+\item[{Conditional Odds}] \(O(x|y) = O(x)\frac{P(x|y)}{P(x|\neg{}y)}\)
+\item[{Isolated Bayesian Prior}] \(B = \frac{P(x|y)}{P(x|\neg{}y)}\)
+\end{description}
+\end{block}
+\end{frame}
+
+\section{References}
+\label{sec:org4d894d1}
 \bibliographystyle{plainnat}
 \bibliography{../../../org/bibliotex/bibliotex}
-\end{frame}
 \end{document}

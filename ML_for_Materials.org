@@ -43,6 +43,7 @@
 ** Machine Learning                                                :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
+:BEAMER_opt: allowframebreaks
 :END:
 *** ML Contributes to AI
 - Adaptable *agent*
@@ -58,6 +59,21 @@
 - function :: Set of all possible responses for all possible percepts
 - percept :: sensory input
 - percept sequence :: history of sensory input
+*** Supervised Training                                           :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+Encourage the agent to behave "correctly"
+1. Minimize Loss
+2. Maximize Score
+*** Unsupervised Training                                         :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+The agent determines something principally true about its environment
+using mathematical/logical characterization methods.
+- find eigenvectors and eigenvalues
+- differentially calculate optima
 ** Inverse Design                                                  :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
@@ -69,12 +85,6 @@
 - senses :: maps points in many dimensions
 - function :: reliably navigates it's environment searching for optima
 - action :: returns its findings to human interpreters
-*** Train Consequentially                                         :B_block:
-:PROPERTIES:
-:BEAMER_env: block
-:END:
-1. Minimize Loss
-2. Maximize Score
 * Chemistry Background
 ** Perovskite Structure and Chemistry                              :B_frame:
 :PROPERTIES:
@@ -201,30 +211,164 @@
 :END:
 \small
 \lstinputlisting[language=Python]{pretty_pipeline.py}
-* Unsupervised and Semi-Supervised ML
-** PCA
-
-** tSNE
-** UMAP
-* COMMENT Supervised ML Architectures
-** Linear
-*** Regularization
-** Decision Tree
-*** 
-** Random Forest
-*** 
-** SISSO
-*** Analogy to Non-Dimensional Analysis
-** Gaussian Process
-** Support Vector Machine
-** Boltzmann Machines
-** Artificial Neural Network
-* COMMENT Architecture Implementations
-* Reference
-** Reference                                                       :B_frame:
+* Feature Engineering
+** PCA                                                             :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+*** col                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.8
+:END:
+#+CAPTION: Learn transformation matrix \(U\) to diagonalizes the matrix \(A\).
+#+CAPTION: The Principal Components in \(Q\) corresponding to the largest
+#+CAPTION: two Singular Values in \(S\) contain the majority of
+#+CAPTION: the variance in the data.
+#+attr_latex: :width 200
+[[file:comp_ratio_projection.png]]
+*** col                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.2
+:END:
+\[
+UAU^\dag = Q^{-1}SQ
+\]
+** tSNE                                                            :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+#+CAPTION: Learn a low-dimensional (2 or 3D) embedding space
+#+CAPTION: in which statistical similarity governs
+#+CAPTION: the proximity of high-dimensional data points
+#+attr_latex: :width 200
+[[file:tsne_comp_DecoE_clusters.png]]
+** UMAP                                                            :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+#+CAPTION: Learn a manifold embedding space in which nearest
+#+CAPTION: neighbors form clusters
+#+attr_latex: :width 200
+file:umap_projection.png
+* Supervised Architectures
+** Linear regressions on BG                                        :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
 :BEAMER_opt: allowframebreaks
 :END:
+#+CAPTION: OLS determines \(\vec{w}\) so that
+#+CAPTION: \(f(x) = \vec{x}^T\vec{w}\), \(y_i = f(x_i) + \epsilon_i\) and
+#+CAPTION: all \epsilon_i are as small as possible
+#+attr_latex: :width 185
+[[file:linear_bg_c.png]]
+
+#+CAPTION: elasticnet determines \(\vec{w}\) as before, but also works
+#+CAPTION: to sparsify the model
+#+attr_latex: :width 185
+[[file:elastic_bg_c.png]]
+** OLS weights                                                     :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+*** col                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.7
+:END:
+| site | element |            |
+|------+---------+------------|
+| A    | Cs      |  23.771206 |
+| A    | FA      |  25.794831 |
+| A    | K       |  22.774475 |
+| A    | MA      |  25.452629 |
+| A    | Rb      |  23.282988 |
+| B    | Ba      | -32.603053 |
+| B    | Ca      | -31.378385 |
+| B    | Ge      | -45.001044 |
+| B    | Pb      | -42.526511 |
+| B    | Sn      | -46.868114 |
+| B    | Sr      | -32.068490 |
+| X    | Br      |   0.939374 |
+| X    | Cl      |   1.769032 |
+| X    | I       |   0.140658 |
+.
+*** col                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+|   |       RSS |
+|---+-----------|
+| A | 54.213044 |
+| B | 95.426246 |
+| X |  2.007905 |
+
+** elasticnet weights                                              :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+*** col                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.7
+:END:
+| site | element |           |
+|------+---------+-----------|
+| A    | Cs      | -0.191057 |
+| A    | FA      |  1.589015 |
+| A    | K       | -1.081903 |
+| A    | MA      |  1.214167 |
+| A    | Rb      | -0.530437 |
+| B    | Ba      |  5.139688 |
+| B    | Ca      |  6.424156 |
+| B    | Ge      | -5.879154 |
+| B    | Pb      | -3.673012 |
+| B    | Sn      | -7.689152 |
+| B    | Sr      |  5.678253 |
+| X    | Br      |  0.000000 |
+| X    | Cl      |  0.819669 |
+| X    | I       | -0.786942 |
+*** col                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+|   |       RSS |
+|---+-----------+
+| A |  2.342552 |
+| B | 14.391222 |
+| X |  1.136281 |
+
+** COMMENT Decision Tree on BG                                     :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+
+** Random Forest Regression on BG                                  :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+#+CAPTION: RFR determines a fit based
+#+attr_latex: :width 185
+file:rfr_c_bg.png
+** COMMENT SISSO
+*** Analogy to Non-Dimensional Analysis
+** Gaussian Process or BG                                          :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_opt: allowframebreaks
+:END:
+#+CAPTION: GPR picks functions from a distribution derived from the data
+#+CAPTION: covariance. The functions that satisfy the data form the fit.
+#+attr_latex: :width 185
+[[file:gpr_bg_c.png]]
+*** Regularization with Priors                                    :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+- Conditional Probablity :: \(P(x|y) = \frac{P(x)P(y|x)}{P(x)}\)
+- Conditional Odds :: \(O(x|y) = O(x)\frac{P(x|y)}{P(x|\neg{}y)}\)
+- Isolated Bayesian Prior :: \(B = \frac{P(x|y)}{P(x|\neg{}y)}\)
+
+** COMMENT Support Vector Machine
+** COMMENT Boltzmann Machines
+** COMMENT Artificial Neural Network
+* References
 bibliographystyle:plainnat
 bibliography:~/org/bibliotex/bibliotex.bib
