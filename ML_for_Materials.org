@@ -343,9 +343,14 @@ file:umap_projection.png
 ** Random Forest Regression on BG                                  :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
+:BEAMER_opt: allowframebreaks
 :END:
-#+CAPTION: RFR determines a fit based
-#+attr_latex: :width 185
+#+CAPTION: RFR initializes an ensemble of Decision Trees and
+#+CAPTION: averages their results to return its prediction.
+#+CAPTION: This leverages the DT's ability to strongly bias
+#+CAPTION: itself to the data and relies on randomness to
+#+CAPTION: explain variance in the underlying process
+#+attr_latex: :width 170
 file:rfr_c_bg.png
 ** COMMENT SISSO
 *** Analogy to Non-Dimensional Analysis

@@ -1,4 +1,4 @@
-% Created 2022-06-16 Thu 10:56
+% Created 2022-06-16 Thu 11:03
 % Intended LaTeX compiler: pdflatex
 \documentclass[10pt, compress]{beamer}
 \usepackage[utf8]{inputenc}
@@ -36,7 +36,7 @@
 \end{frame}
 
 \section{AI Background}
-\label{sec:orgf9c13d2}
+\label{sec:org037d718}
 \begin{frame}[allowframebreaks]{Artificial Intelligence}
 \begin{block}{The Four Approached to AI}
 \begin{center}
@@ -100,7 +100,7 @@ using mathematical/logical characterization methods.
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org69c98a3}]{Inverse Design}
+\begin{frame}[label={sec:org5a482ca}]{Inverse Design}
 \begin{block}{A Type of AI Implementation}
 \begin{description}
 \item[{senses}] maps points in many dimensions
@@ -110,15 +110,15 @@ using mathematical/logical characterization methods.
 \end{block}
 \end{frame}
 \section{Chemistry Background}
-\label{sec:org785718e}
-\begin{frame}[label={sec:orga57d7e2}]{Perovskite Structure and Chemistry}
+\label{sec:orgef4941f}
+\begin{frame}[label={sec:org0e3631d}]{Perovskite Structure and Chemistry}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{cubic_perovskite.png}
 \caption{Example of hybrid organic-inorganic MAPbI\textsubscript{3} \cite{mannodi-kanakkithodi-2022-data-driven}}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:orgb76f320}]{Our Dataset}
+\begin{frame}[label={sec:org58bbada}]{Our Dataset}
 \begin{columns}
 \begin{column}{0.35\columnwidth}
 \begin{block}{DFT Simulations}
@@ -180,8 +180,8 @@ MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
 \end{columns}
 \end{frame}
 \section{Pipeline}
-\label{sec:orgd3aaf55}
-\begin{frame}[label={sec:orga019957}]{Data Pre-Processing}
+\label{sec:orgae04cd6}
+\begin{frame}[label={sec:org11880e9}]{Data Pre-Processing}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=300]{./data_proc.png}
@@ -189,7 +189,7 @@ MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:orge285cd8}]{Machine Learning Pipeline}
+\begin{frame}[label={sec:org9eede57}]{Machine Learning Pipeline}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=300]{./ML_pipe.png}
@@ -202,8 +202,8 @@ MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
 \lstinputlisting[language=Python]{pretty_pipeline.py}
 \end{frame}
 \section{Feature Engineering}
-\label{sec:org3f385f4}
-\begin{frame}[label={sec:orga920cf0}]{PCA}
+\label{sec:org94a9cbe}
+\begin{frame}[label={sec:org849c1df}]{PCA}
 \begin{columns}
 \begin{column}{0.8\columnwidth}
 \begin{figure}[htbp]
@@ -219,14 +219,14 @@ UAU^\dag = Q^{-1}SQ
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:org803ea7c}]{tSNE}
+\begin{frame}[label={sec:org5932adb}]{tSNE}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{tsne_comp_DecoE_clusters.png}
 \caption{Learn a low-dimensional (2 or 3D) embedding space in which statistical similarity governs the proximity of high-dimensional data points}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:org81b1a08}]{UMAP}
+\begin{frame}[label={sec:org793a9b6}]{UMAP}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{umap_projection.png}
@@ -234,8 +234,8 @@ UAU^\dag = Q^{-1}SQ
 \end{figure}
 \end{frame}
 \section{Supervised Architectures}
-\label{sec:orgc4b5fd0}
-\begin{frame}[allowframebreaks]{Linear regression on BG}
+\label{sec:org73df76e}
+\begin{frame}[allowframebreaks]{Linear regressions on BG}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=185]{linear_bg_c.png}
@@ -248,7 +248,7 @@ UAU^\dag = Q^{-1}SQ
 \caption{elasticnet determines \(\vec{w}\) as before, but also works to sparsify the model}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:org70bcf12}]{OLS weights}
+\begin{frame}[label={sec:orgd1c7839}]{OLS weights}
 \begin{columns}
 \begin{column}{0.7\columnwidth}
 \begin{center}
@@ -287,7 +287,7 @@ X & 2.007905\\
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orga62a4f9}]{elasticnet weights}
+\begin{frame}[label={sec:org5178e6b}]{elasticnet weights}
 \begin{columns}
 \begin{column}{0.7\columnwidth}
 \begin{center}
@@ -325,6 +325,13 @@ X & 1.136281\\
 \end{columns}
 \end{frame}
 
+\begin{frame}[allowframebreaks]{Random Forest Regression on BG}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=170]{rfr_c_bg.png}
+\caption{RFR initializes an ensemble of Decision Trees and averages their results to return its prediction. This leverages the DT's ability to strongly bias itself to the data and relies on randomness to explain variance in the underlying process}
+\end{figure}
+\end{frame}
 \begin{frame}[allowframebreaks]{Gaussian Process or BG}
 \begin{figure}[htbp]
 \centering
@@ -341,7 +348,7 @@ X & 1.136281\\
 \end{frame}
 
 \section{References}
-\label{sec:org4d894d1}
+\label{sec:org8b72765}
 \bibliographystyle{plainnat}
 \bibliography{../../../org/bibliotex/bibliotex}
 \end{document}
