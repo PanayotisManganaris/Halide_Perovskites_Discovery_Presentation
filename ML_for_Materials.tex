@@ -1,0 +1,201 @@
+% Created 2022-06-16 Thu 08:24
+% Intended LaTeX compiler: pdflatex
+\documentclass[10pt, compress]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{listings}
+\institute[Mannodi Group]{\inst{1} Purdue Materials Science and Engineering Mannodi Group}
+\mode<beamer>{\usetheme{Warsaw}}
+\useoutertheme{miniframes}
+\usepackage{natbib}
+\usetheme{default}
+\author{Panayotis Manganaris\inst{1}}
+\date{\today{}}
+\title{Statistical Learning for Halide Perovskite Discovery}
+\hypersetup{
+ pdfauthor={Panayotis Manganaris\inst{1}},
+ pdftitle={Statistical Learning for Halide Perovskite Discovery},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.0.50 (Org mode 9.5.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{AI Background}
+\label{sec:org6d9fe30}
+\begin{frame}[allowframebreaks]{Artificial Intelligence}
+\begin{block}{The Four Approached to AI}
+\begin{center}
+\begin{tabular}{ll}
+Thinking Humanly & Thinking Rationally\\
+- Turing test approach & - Laws of Thought\\
+(The Six Fields of AI) & -- logical positing\\
+-- NLP & -- proven algorithms\\
+-- Knowledge Representation & -- correct inference\\
+-- automated reasoning & -- syllogistic reason\\
+-- Machine Learning & \\
+-- computer vision & \\
+-- robotics & \\
+\hline
+\hline
+Acting Humanly & Acting Rationally\\
+- cognitive modeling approach & - The rational agent\\
+-- neuromorphic algorithms & -- inference + reflex\\
+ & -- inference vs deduction\\
+\end{tabular}
+\end{center}
+\citet{russell-2010-artif}
+\end{block}
+\end{frame}
+
+\begin{frame}[label={sec:org5f52d2c}]{Machine Learning}
+\begin{block}{ML Contributes to AI}
+\begin{itemize}
+\item Adaptable \alert{agent}
+\begin{itemize}
+\item Contextual judgment of \alert{percept} relevance
+\item Autonomous utilization of \alert{percept sequence}
+\end{itemize}
+\item Learning
+\begin{itemize}
+\item \alert{function} performance improves with exposure to more percepts
+\end{itemize}
+\end{itemize}
+\end{block}
+\begin{definition}[Artifical Agency]
+\begin{description}
+\item[{agent}] self-contained sensor->function->action pipeline
+\item[{function}] Set of all possible responses for all possible percepts
+\item[{percept}] sensory input
+\item[{percept sequence}] history of sensory input
+\end{description}
+\end{definition}
+\end{frame}
+\begin{frame}[label={sec:orgb72da13}]{Inverse Design}
+\begin{block}{A Type of AI Implementation}
+\begin{description}
+\item[{senses}] maps points in many dimensions
+\item[{function}] reliably navigates it's environment searching for optima
+\item[{action}] returns its findings to human interpreters
+\end{description}
+\end{block}
+\begin{block}{Train Consequentially}
+\begin{enumerate}
+\item Minimize Loss
+\item Maximize Score
+\end{enumerate}
+\end{block}
+\end{frame}
+\section{Chemistry Background}
+\label{sec:org67eb681}
+\begin{frame}[label={sec:orgc23004d}]{Perovskite Structure and Chemistry}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=200]{cubic_perovskite.png}
+\caption{Example of hybrid organic-inorganic MAPbI\textsubscript{3} \cite{mannodi-kanakkithodi-2022-data-driven}}
+\end{figure}
+\end{frame}
+\begin{frame}[label={sec:org16cacb2}]{Our Dataset}
+\begin{columns}
+\begin{column}{0.35\columnwidth}
+\begin{block}{DFT Simulations}
+\begin{enumerate}
+\item geometry optimization
+\item Static band structure and optical absorption
+\end{enumerate}
+\end{block}
+\begin{block}{Levels of Theory}
+\begin{itemize}
+\item PBE
+\item HSE06
+\item PBE+HSE06(SOC)
+\item Experimental
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.65\columnwidth}
+\begin{center}
+\begin{tabular}{lrrl}
+Formula & bg\textsubscript{eV} & \(\eta\) & LoT\\
+\hline
+MAPbCl3 & 3.0300 & 0.0020 & EXP\\
+CsPbI0.375Br2.625 & 1.6880 & 0.1532 & PBE\\
+RbSnBr2.625Cl0.375 & 1.4467 & NaN & HSE\\
+CsGeCl3 & 1.0510 & 0.1767 & PBE\\
+MASr0.5Pb0.5Cl3 & 5.3125 & NaN & HSE\\
+MABa0.25Pb0.75I3 & 1.9980 & 0.0155 & PBE\\
+MASnI3 & 2.5741 & NaN & HSE\\
+MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
+\ldots{} & \ldots{} & \ldots{} & \ldots{}\\
+\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[allowframebreaks]{Band Gap Fidelity}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=250]{pbe_v_hse_bg.png}
+\caption{PBE vs HSE Band Gaps}
+\end{figure}
+\cite{almora-2020-devic-perfor}
+\begin{columns}
+\begin{column}{0.4\columnwidth}
+\begin{figure}[htbp]
+\centering
+\includegraphics[height=110]{pbe_v_almora_bg.png}
+\caption{PBE vs Almora BG}
+\end{figure}
+\end{column}
+\begin{column}{0.6\columnwidth}
+\begin{figure}[htbp]
+\centering
+\includegraphics[height=110]{hse_v_almora_bg.png}
+\caption{HSE vs Almora BG}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+\section{Pipeline}
+\label{sec:org78ce262}
+\begin{frame}[label={sec:orgb9045fa}]{Data Pre-Processing}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=300]{./data_proc.png}
+\caption{Data Preprocessing Workflow to Implement with Python Pandas}
+\end{figure}
+\end{frame}
+
+\begin{frame}[label={sec:org8584cb5}]{Machine Learning Pipeline}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=300]{./ML_pipe.png}
+\caption{Machine Learning Pipelin to Implement with Python SciKit-Learn}
+\end{figure}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Implementation in Jupyter Python}
+\small
+\lstinputlisting[language=Python]{pretty_pipeline.py}
+\end{frame}
+\section{Reference}
+\label{sec:org0bbdce4}
+\begin{frame}[allowframebreaks]{Reference}
+\bibliographystyle{plainnat}
+\bibliography{../../../org/bibliotex/bibliotex}
+\end{frame}
+\end{document}

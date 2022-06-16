@@ -1,0 +1,41 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Almora et~al.(2020)Almora, Baran, Bazan, Berger, Cabrera, Catchpole,
+  Erten‐Ela, Guo, Hauch, Ho‐Baillie, Jacobsson, Janssen, Kirchartz,
+  Kopidakis, Li, Loi, Lunt, Mathew, McGehee, Min, Mitzi, Nazeeruddin, Nelson,
+  Nogueira, Paetzold, Park, Rand, Rau, Snaith, Unger, Vaillant‐Roca, Yip, and
+  Brabec]{almora-2020-devic-perfor}
+Osbel Almora, Derya Baran, Guillermo~C. Bazan, Christian Berger, Carlos~I.
+  Cabrera, Kylie~R. Catchpole, Sule Erten‐Ela, Fei Guo, Jens Hauch, Anita
+  W.~Y. Ho‐Baillie, T.~Jesper Jacobsson, Rene A.~J. Janssen, Thomas
+  Kirchartz, Nikos Kopidakis, Yongfang Li, Maria~A. Loi, Richard~R. Lunt,
+  Xavier Mathew, Michael~D. McGehee, Jie Min, David~B. Mitzi, Mohammad~K.
+  Nazeeruddin, Jenny Nelson, Ana~F. Nogueira, Ulrich~W. Paetzold, Nam‐Gyu
+  Park, Barry~P. Rand, Uwe Rau, Henry~J. Snaith, Eva Unger, L{\'i}dice
+  Vaillant‐Roca, Hin‐Lap Yip, and Christoph~J. Brabec.
+\newblock Device performance of emerging photovoltaic materials (version 1).
+\newblock \emph{Advanced Energy Materials}, 11\penalty0 (11):\penalty0 2002774,
+  2020.
+\newblock \doi{10.1002/aenm.202002774}.
+\newblock URL \url{http://dx.doi.org/10.1002/aenm.202002774}.
+
+\bibitem[Mannodi-Kanakkithodi and
+  Chan(2022)]{mannodi-kanakkithodi-2022-data-driven}
+Arun Mannodi-Kanakkithodi and Maria K.~Y. Chan.
+\newblock Data-driven design of novel halide perovskite alloys.
+\newblock \emph{Energy Environ. Sci.}, 15:\penalty0 1930--1949, 2022.
+\newblock \doi{10.1039/D1EE02971A}.
+\newblock URL \url{http://dx.doi.org/10.1039/D1EE02971A}.
+
+\bibitem[Russell and Norvig(2010)]{russell-2010-artif}
+Stuart Russell and Peter Norvig.
+\newblock \emph{Artificial intelligence : a modern approach}.
+\newblock Prentice Hall, Upper Saddle River, New Jersey, 2010.
+\newblock ISBN 9780136042594.
+
+\end{thebibliography}
