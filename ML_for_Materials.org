@@ -3,26 +3,210 @@
 #+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
 #+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:t title:t toc:t todo:t |:t
-#+title: ML for Halide Perovskite Discovery
-#+date: \data
+#+title: Statistical Learning for Halide Perovskite Discovery
+#+date: \today{}
 #+author: Panayotis Manganaris\inst{1}
 #+email: pmangana@purdue.edu
 #+language: en
 #+select_tags: export
 #+exclude_tags: noexport
 #+creator: Emacs 29.0.50 (Org mode 9.5.3)
-#+cite_export:
+#+latex_header:\usepackage{listings}
 #+setupfile: ~/org/mrg_beamer_header.org
-* Background
-** Machine Learning
-** Artificial Intelligence
-** our dataset
-* Full ML Development Pipeline
-* Unsupervised and Semi-Supervised AI
+* AI Background
+** Artificial Intelligence                                         :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_opt: allowframebreaks
+:END:
+*** The Four Approached to AI                                     :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+| Thinking Humanly              | Thinking Rationally       |
+| - Turing test approach        | - Laws of Thought         |
+| (The Six Fields of AI)        | -- logical positing       |
+| -- NLP                        | -- proven algorithms      |
+| -- Knowledge Representation   | -- correct inference      |
+| -- automated reasoning        | -- syllogistic reason     |
+| -- Machine Learning           |                           |
+| -- computer vision            |                           |
+| -- robotics                   |                           |
+|-------------------------------+---------------------------|
+|-------------------------------+---------------------------|
+| Acting Humanly                | Acting Rationally         |
+| - cognitive modeling approach | - The rational agent      |
+| -- neuromorphic algorithms    | -- inference + reflex     |
+|                               | -- inference vs deduction |
+[[citet:&russell-2010-artif]]
+
+** Machine Learning                                                :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+*** ML Contributes to AI
+- Adaptable *agent*
+  - Contextual judgment of *percept* relevance
+  - Autonomous utilization of *percept sequence*
+- Learning
+  - *function* performance improves with exposure to more percepts
+*** Artifical Agency                                         :B_definition:
+:PROPERTIES:
+:BEAMER_env: definition
+:END:
+- agent :: self-contained sensor->function->action pipeline
+- function :: Set of all possible responses for all possible percepts
+- percept :: sensory input
+- percept sequence :: history of sensory input
+** Inverse Design                                                  :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+*** A Type of AI Implementation                                   :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+- senses :: maps points in many dimensions
+- function :: reliably navigates it's environment searching for optima
+- action :: returns its findings to human interpreters
+*** Train Consequentially                                         :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+1. Minimize Loss
+2. Maximize Score
+* Chemistry Background
+** Perovskite Structure and Chemistry                              :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+#+CAPTION: Example of hybrid organic-inorganic MAPbI_3 [[cite:&mannodi-kanakkithodi-2022-data-driven]]
+#+attr_latex: :width 200
+[[file:cubic_perovskite.png]]
+** Our Dataset                                                     :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+*** col                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+**** DFT Simulations                                             :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+1. geometry optimization
+2. Static band structure and optical absorption
+**** Levels of Theory
+- PBE
+- HSE06
+- PBE+HSE06(SOC)
+- Experimental
+*** col                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.65
+:END:
+| Formula            |  bg_eV |   \eta | LoT |
+|--------------------+--------+--------+-----|
+| MAPbCl3            | 3.0300 | 0.0020 | EXP |
+| CsPbI0.375Br2.625  | 1.6880 | 0.1532 | PBE |
+| RbSnBr2.625Cl0.375 | 1.4467 |    NaN | HSE |
+| CsGeCl3            | 1.0510 | 0.1767 | PBE |
+| MASr0.5Pb0.5Cl3    | 5.3125 |    NaN | HSE |
+| MABa0.25Pb0.75I3   | 1.9980 | 0.0155 | PBE |
+| MASnI3             | 2.5741 |    NaN | HSE |
+| MACa0.5Pb0.5Cl3    | 5.3219 |    NaN | HSE |
+| ...                |    ... |    ... | ... |
+** Band Gap Fidelity                                             :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_opt: allowframebreaks
+:END:
+#+CAPTION: PBE vs HSE Band Gaps
+#+attr_latex: :width 250
+[[file:pbe_v_hse_bg.png]]
+[[cite:&almora-2020-devic-perfor]]
+*** col                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+#+CAPTION: PBE vs Almora BG
+#+attr_latex: :height 110
+[[file:pbe_v_almora_bg.png]]
+*** col                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+#+CAPTION: HSE vs Almora BG
+#+attr_latex: :height 110
+[[file:hse_v_almora_bg.png]]
+* Pipeline
+** Data Pre-Processing                                             :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+#+begin_src ditaa :eval never-export :export results :file ./data_proc.png
+  +------------+      +------------+         +------------+
+  |            |      |            |         |            +-----+
+  |  cleaning  +----->|  grouping  +-------->|  labeling  |     |
+  |            |      |            |         |            |<-+  |
+  +------------+      +------------+         +------------+  |  |
+  +---------+        +--------------+      +--------------+  |  |
+  |         |        |              |      |              +--+  |
+  |  {X,y}  |<-------+  validating  |<-----+ featurizing  |     |
+  |         |        |              |      |              |<----+
+  +---------+        +--------------+      +--------------+
+#+end_src
+
+#+CAPTION: Data Preprocessing Workflow to Implement with Python Pandas
+#+attr_latex: :width 300
+[[file:./data_proc.png]]
+
+** Machine Learning Pipeline                                       :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+#+begin_src ditaa :eval never-export :export results :file ./ML_pipe.png
+       ---------------------------------------------------------
+      |                                                         |
+      |    +-------------------+      +-------------------+     |
+      |    |                   |      |                   |     |
+      |    |  Make Test/Train  |      |  Define Pipeline  |     |
+      |    |       Split       |      |                   |     |
+      |    |                   |      |                   |     |
+      |    +-------+-----------+      +------------+------+     |
+      |            |                               |            |
+      |            |      +------------------+     |            |
+      |            |      |                  |     |            |
+      |            +----->|   fit pipeline   |<----+            |
+      |                   |                  |                  |
+      |                   +---------+--------+                  |
+      | HPO Loop                    |                           |
+       -----------------------------+---------------------------
+                                    |
+                                    |
+                           +--------+-------+
+                           | test pipeline  |
+                           +----------------+
+#+end_src
+
+#+CAPTION: Machine Learning Pipelin to Implement with Python SciKit-Learn
+#+attr_latex: :width 300
+[[file:./ML_pipe.png]]
+
+** Implementation in Jupyter Python                                :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_opt: allowframebreaks
+:END:
+\small
+\lstinputlisting[language=Python]{pretty_pipeline.py}
+* Unsupervised and Semi-Supervised ML
 ** PCA
+
 ** tSNE
 ** UMAP
-* Supervised ML Architectures
+* COMMENT Supervised ML Architectures
 ** Linear
 *** Regularization
 ** Decision Tree
@@ -35,4 +219,12 @@
 ** Support Vector Machine
 ** Boltzmann Machines
 ** Artificial Neural Network
-* Architecture Implementations
+* COMMENT Architecture Implementations
+* Reference
+** Reference                                                       :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_opt: allowframebreaks
+:END:
+bibliographystyle:plainnat
+bibliography:~/org/bibliotex/bibliotex.bib
