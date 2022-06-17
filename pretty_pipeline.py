@@ -6,6 +6,7 @@ import numpy as np
 import cmcl
 from spyglass.model_imaging import parityplot
 from sklearn.pipeline import make_pipeline
+from sklearn.compose import ColumnTransformer
 from sklearn.<module> import NumPreProcessor1
 from sklearn.<module> import CatPreProcessor1
 from sklearn.<module> import NumPreProcessor2
@@ -34,7 +35,7 @@ catagorical_pipeline = make_pipeline(CatPreProcessor1(),
                                      CatPreProcessor2())
 
 
-preprocessor = colt(
+preprocessor = ColumnTransformer(
     transformers=[
         ("num", numeric_pipeline, numeric_features),
         ("cat", categorical_pipline, categorical_features),
@@ -49,7 +50,7 @@ df_tr, df_ts = df.iloc[train_idx], df.iloc[test_idx]
 
 pipe = make_pipeline(preprocessor, Estimator())
 
-pipe.fit(dc_r, df_tr.<target>)
+pipe.fit(dc_tr, df_tr.<target>)
 
 
 p, data = parityplot(pipe,
