@@ -1,4 +1,4 @@
-% Created 2022-06-16 Thu 11:03
+% Created 2022-06-20 Mon 23:30
 % Intended LaTeX compiler: pdflatex
 \documentclass[10pt, compress]{beamer}
 \usepackage[utf8]{inputenc}
@@ -16,7 +16,20 @@
 \institute[Mannodi Group]{\inst{1} Purdue Materials Science and Engineering Mannodi Group}
 \mode<beamer>{\usetheme{Warsaw}}
 \useoutertheme{miniframes}
-\usepackage{natbib}
+\setbeamertemplate{caption}[numbered]
+%
+\usepackage[%
+%citestyle=authoryear-icomp,
+%bibstyle=authoryear,
+style=verbose,
+hyperref=true,
+backref=true,
+maxcitenames=3,
+url=true,
+backend=biber,
+natbib=true,
+]{biblatex}
+\addbibresource{~/org/bibliotex/bibliotex.bib}
 \usetheme{default}
 \author{Panayotis Manganaris\inst{1}}
 \date{\today{}}
@@ -35,15 +48,18 @@
 \tableofcontents
 \end{frame}
 
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+  \insertshorttitle\hfill
+  \insertframenumber\,/\,\inserttotalframenumber}
 \section{AI Background}
-\label{sec:org037d718}
-\begin{frame}[allowframebreaks]{Artificial Intelligence}
+\label{sec:org16b963f}
+\begin{frame}[label={sec:org711ad2f}]{Artificial Intelligence}
 \begin{block}{The Four Approached to AI}
 \begin{center}
 \begin{tabular}{ll}
 Thinking Humanly & Thinking Rationally\\
 - Turing test approach & - Laws of Thought\\
-(The Six Fields of AI) & -- logical positing\\
+(The Six Fields of AI)\footnotemark & -- logical positing\\
 -- NLP & -- proven algorithms\\
 -- Knowledge Representation & -- correct inference\\
 -- automated reasoning & -- syllogistic reason\\
@@ -57,11 +73,9 @@ Acting Humanly & Acting Rationally\\
 -- neuromorphic algorithms & -- inference + reflex\\
  & -- inference vs deduction\\
 \end{tabular}
-\end{center}
-\citet{russell-2010-artif}
+\end{center}\footnotetext[1]{\label{org4f390e5}\cite{russell-2010-artif}}
 \end{block}
 \end{frame}
-
 \begin{frame}[allowframebreaks]{Machine Learning}
 \begin{block}{ML Contributes to AI}
 \begin{itemize}
@@ -100,7 +114,7 @@ using mathematical/logical characterization methods.
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org5a482ca}]{Inverse Design}
+\begin{frame}[label={sec:org39b3fc2}]{Inverse Design}
 \begin{block}{A Type of AI Implementation}
 \begin{description}
 \item[{senses}] maps points in many dimensions
@@ -110,15 +124,14 @@ using mathematical/logical characterization methods.
 \end{block}
 \end{frame}
 \section{Chemistry Background}
-\label{sec:orgef4941f}
-\begin{frame}[label={sec:org0e3631d}]{Perovskite Structure and Chemistry}
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=200]{cubic_perovskite.png}
-\caption{Example of hybrid organic-inorganic MAPbI\textsubscript{3} \cite{mannodi-kanakkithodi-2022-data-driven}}
-\end{figure}
+\label{sec:org9cfed53}
+\begin{frame}[label={sec:org8b10dd3}]{Perovskite Structure and Chemistry}
+Example\footnote{\cite{mannodi-kanakkithodi-2022-data-driven}} of hybrid organic-inorganic MAPbI\textsubscript{3}
+\begin{center}
+\includegraphics[width=190]{cubic_perovskite.png}
+\end{center}
 \end{frame}
-\begin{frame}[label={sec:org58bbada}]{Our Dataset}
+\begin{frame}[label={sec:orgf15de3e}]{Our Dataset}
 \begin{columns}
 \begin{column}{0.35\columnwidth}
 \begin{block}{DFT Simulations}
@@ -141,14 +154,14 @@ using mathematical/logical characterization methods.
 \begin{tabular}{lrrl}
 Formula & bg\textsubscript{eV} & \(\eta\) & LoT\\
 \hline
-MAPbCl3 & 3.0300 & 0.0020 & EXP\\
-CsPbI0.375Br2.625 & 1.6880 & 0.1532 & PBE\\
-RbSnBr2.625Cl0.375 & 1.4467 & NaN & HSE\\
-CsGeCl3 & 1.0510 & 0.1767 & PBE\\
-MASr0.5Pb0.5Cl3 & 5.3125 & NaN & HSE\\
-MABa0.25Pb0.75I3 & 1.9980 & 0.0155 & PBE\\
-MASnI3 & 2.5741 & NaN & HSE\\
-MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
+MAPbCl3 & 3.03 & 0.002 & EXP\\
+CsPbI0.375Br2.625 & 1.68 & 0.153 & PBE\\
+RbSnBr2.625Cl0.375 & 1.44 & NaN & HSE\\
+CsGeCl3 & 1.05 & 0.176 & PBE\\
+MASr0.5Pb0.5Cl3 & 5.31 & NaN & HSE\\
+MABa0.25Pb0.75I3 & 1.99 & 0.015 & PBE\\
+MASnI3 & 2.57 & NaN & HSE\\
+MACa0.5Pb0.5Cl3 & 5.32 & NaN & HSE\\
 \ldots{} & \ldots{} & \ldots{} & \ldots{}\\
 \end{tabular}
 \end{center}
@@ -161,7 +174,7 @@ MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
 \includegraphics[width=250]{pbe_v_hse_bg.png}
 \caption{PBE vs HSE Band Gaps}
 \end{figure}
-\cite{almora-2020-devic-perfor}
+Comparing computational with experimental\footnote{\cite{almora-2020-devic-perfor}} band gaps
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \begin{figure}[htbp]
@@ -180,8 +193,8 @@ MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
 \end{columns}
 \end{frame}
 \section{Pipeline}
-\label{sec:orgae04cd6}
-\begin{frame}[label={sec:org11880e9}]{Data Pre-Processing}
+\label{sec:org8798572}
+\begin{frame}[label={sec:org2257953}]{Data Pre-Processing}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=300]{./data_proc.png}
@@ -189,44 +202,105 @@ MACa0.5Pb0.5Cl3 & 5.3219 & NaN & HSE\\
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org9eede57}]{Machine Learning Pipeline}
+\begin{frame}[label={sec:org1ebb15c}]{Machine Learning Pipeline}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=300]{./ML_pipe.png}
-\caption{Machine Learning Pipelin to Implement with Python SciKit-Learn}
+\caption{Machine Learning Pipeline to Implement with Python SciKit-Learn}
 \end{figure}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Implementation in Jupyter Python}
-\small
-\lstinputlisting[language=Python]{pretty_pipeline.py}
+\begin{frame}[fragile,allowframebreaks]{Implementation in Jupyter Python}
+ \small
+\lstset{language=Python,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+import sys, os
+sys.path.append(os.path.expanduser("~/src/cmcl"))
+sys.path.append(os.path.expanduser("~/src/spyglass"))
+import pandas as pd
+import numpy as np
+import cmcl
+from spyglass.model_imaging import parityplot
+from sklearn.pipeline import make_pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.<module> import NumPreProcessor1
+from sklearn.<module> import CatPreProcessor1
+from sklearn.<module> import NumPreProcessor2
+from sklearn.<module> import CatPreProcessor2
+from sklearn.<module> import Estimator
+
+df = pd.read_<data>('./file.<data>')
+df = df.groupby('Formula', as_index=False).agg(
+    {'bg_eV':'median', 'efficiency':'median'})
+
+dc = df.ft.comp()
+dc = dc.assign(label='label')
+
+numeric_features = dc
+.select_dtypes(np.number)
+.columns
+.to_list()
+numeric_pipeline = make_pipeline(NumPreProcessor1(),
+				 NumPreProcessor2())
+categorical_features = mc
+.select_dtypes('object')
+.columns
+.to_list()
+catagorical_pipeline = make_pipeline(CatPreProcessor1(),
+				     CatPreProcessor2())
+
+
+preprocessor = ColumnTransformer(
+    transformers=[
+	("num", numeric_pipeline, numeric_features),
+	("cat", categorical_pipline, categorical_features),
+    ]
+)
+
+ss = ShuffleSplit(n_splits=1, train_size=0.8,
+		  random_state=None)
+train_idx, test_idx = next(ss.split(dc))
+dc_tr, dc_ts = dc.iloc[train_idx], dc.iloc[test_idx]
+df_tr, df_ts = df.iloc[train_idx], df.iloc[test_idx]
+
+pipe = make_pipeline(preprocessor, Estimator())
+
+pipe.fit(dc_tr, df_tr.<target>)
+
+
+p, data = parityplot(pipe,
+		     dc_ts, df_ts.<target>.to_frame(),
+		     aspect=1.0)
+p.figure.show()
+\end{lstlisting}
 \end{frame}
+
 \section{Feature Engineering}
-\label{sec:org94a9cbe}
-\begin{frame}[label={sec:org849c1df}]{PCA}
+\label{sec:orgdeb2d5a}
+\begin{frame}[label={sec:org74a2901}]{PCA}
 \begin{columns}
-\begin{column}{0.8\columnwidth}
+\begin{column}{0.75\columnwidth}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{comp_ratio_projection.png}
 \caption{Learn transformation matrix \(U\) to diagonalizes the matrix \(A\). The Principal Components in \(Q\) corresponding to the largest two Singular Values in \(S\) contain the majority of the variance in the data.}
 \end{figure}
 \end{column}
-\begin{column}{0.2\columnwidth}
+\begin{column}{0.25\columnwidth}
 \[
 UAU^\dag = Q^{-1}SQ
 \]
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:org5932adb}]{tSNE}
+\begin{frame}[label={sec:org1ae1622}]{tSNE}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{tsne_comp_DecoE_clusters.png}
 \caption{Learn a low-dimensional (2 or 3D) embedding space in which statistical similarity governs the proximity of high-dimensional data points}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:org793a9b6}]{UMAP}
+\begin{frame}[label={sec:orgb8792b6}]{UMAP}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{umap_projection.png}
@@ -234,7 +308,7 @@ UAU^\dag = Q^{-1}SQ
 \end{figure}
 \end{frame}
 \section{Supervised Architectures}
-\label{sec:org73df76e}
+\label{sec:org87d8927}
 \begin{frame}[allowframebreaks]{Linear regressions on BG}
 \begin{figure}[htbp]
 \centering
@@ -248,7 +322,7 @@ UAU^\dag = Q^{-1}SQ
 \caption{elasticnet determines \(\vec{w}\) as before, but also works to sparsify the model}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:orgd1c7839}]{OLS weights}
+\begin{frame}[label={sec:orgf4aaa14}]{OLS weights}
 \begin{columns}
 \begin{column}{0.7\columnwidth}
 \begin{center}
@@ -287,7 +361,7 @@ X & 2.007905\\
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org5178e6b}]{elasticnet weights}
+\begin{frame}[label={sec:org7a2478b}]{elasticnet weights}
 \begin{columns}
 \begin{column}{0.7\columnwidth}
 \begin{center}
@@ -347,8 +421,7 @@ X & 1.136281\\
 \end{block}
 \end{frame}
 
-\section{References}
-\label{sec:org8b72765}
-\bibliographystyle{plainnat}
-\bibliography{../../../org/bibliotex/bibliotex}
+\section{}
+\label{sec:orgd37d770}
+\printbibliography
 \end{document}

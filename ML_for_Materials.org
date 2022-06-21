@@ -12,12 +12,13 @@
 #+exclude_tags: noexport
 #+creator: Emacs 29.0.50 (Org mode 9.5.3)
 #+latex_header:\usepackage{listings}
+#+latex_engraved-theme: t
 #+setupfile: ~/org/mrg_beamer_header.org
+#+include: ~/org/mrg_beamer_frontmatter.org
 * AI Background
 ** Artificial Intelligence                                         :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
-:BEAMER_opt: allowframebreaks
 :END:
 *** The Four Approached to AI                                     :B_block:
 :PROPERTIES:
@@ -25,7 +26,7 @@
 :END:
 | Thinking Humanly              | Thinking Rationally       |
 | - Turing test approach        | - Laws of Thought         |
-| (The Six Fields of AI)        | -- logical positing       |
+| (The Six Fields of AI)[fn:1]  | -- logical positing       |
 | -- NLP                        | -- proven algorithms      |
 | -- Knowledge Representation   | -- correct inference      |
 | -- automated reasoning        | -- syllogistic reason     |
@@ -38,8 +39,6 @@
 | - cognitive modeling approach | - The rational agent      |
 | -- neuromorphic algorithms    | -- inference + reflex     |
 |                               | -- inference vs deduction |
-[[citet:&russell-2010-artif]]
-
 ** Machine Learning                                                :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
@@ -90,8 +89,8 @@ using mathematical/logical characterization methods.
 :PROPERTIES:
 :BEAMER_env: frame
 :END:
-#+CAPTION: Example of hybrid organic-inorganic MAPbI_3 [[cite:&mannodi-kanakkithodi-2022-data-driven]]
-#+attr_latex: :width 200
+Example[fn:3] of hybrid organic-inorganic MAPbI_3
+#+attr_latex: :width 190
 [[file:cubic_perovskite.png]]
 ** Our Dataset                                                     :B_frame:
 :PROPERTIES:
@@ -116,18 +115,18 @@ using mathematical/logical characterization methods.
 :PROPERTIES:
 :BEAMER_col: 0.65
 :END:
-| Formula            |  bg_eV |   \eta | LoT |
-|--------------------+--------+--------+-----|
-| MAPbCl3            | 3.0300 | 0.0020 | EXP |
-| CsPbI0.375Br2.625  | 1.6880 | 0.1532 | PBE |
-| RbSnBr2.625Cl0.375 | 1.4467 |    NaN | HSE |
-| CsGeCl3            | 1.0510 | 0.1767 | PBE |
-| MASr0.5Pb0.5Cl3    | 5.3125 |    NaN | HSE |
-| MABa0.25Pb0.75I3   | 1.9980 | 0.0155 | PBE |
-| MASnI3             | 2.5741 |    NaN | HSE |
-| MACa0.5Pb0.5Cl3    | 5.3219 |    NaN | HSE |
-| ...                |    ... |    ... | ... |
-** Band Gap Fidelity                                             :B_frame:
+| Formula            | bg_eV |  \eta | LoT |
+|--------------------+-------+-------+-----|
+| MAPbCl3            |  3.03 | 0.002 | EXP |
+| CsPbI0.375Br2.625  |  1.68 | 0.153 | PBE |
+| RbSnBr2.625Cl0.375 |  1.44 |   NaN | HSE |
+| CsGeCl3            |  1.05 | 0.176 | PBE |
+| MASr0.5Pb0.5Cl3    |  5.31 |   NaN | HSE |
+| MABa0.25Pb0.75I3   |  1.99 | 0.015 | PBE |
+| MASnI3             |  2.57 |   NaN | HSE |
+| MACa0.5Pb0.5Cl3    |  5.32 |   NaN | HSE |
+| ...                |   ... |   ... | ... |
+** Band Gap Fidelity                                               :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
 :BEAMER_opt: allowframebreaks
@@ -135,7 +134,7 @@ using mathematical/logical characterization methods.
 #+CAPTION: PBE vs HSE Band Gaps
 #+attr_latex: :width 250
 [[file:pbe_v_hse_bg.png]]
-[[cite:&almora-2020-devic-perfor]]
+Comparing computational with experimental[fn:2] band gaps
 *** col                                                             :BMCOL:
 :PROPERTIES:
 :BEAMER_col: 0.4
@@ -177,30 +176,40 @@ using mathematical/logical characterization methods.
 :BEAMER_env: frame
 :END:
 #+begin_src ditaa :eval never-export :export results :file ./ML_pipe.png
-       ---------------------------------------------------------
-      |                                                         |
-      |    +-------------------+      +-------------------+     |
-      |    |                   |      |                   |     |
-      |    |  Make Test/Train  |      |  Define Pipeline  |     |
-      |    |       Split       |      |                   |     |
-      |    |                   |      |                   |     |
-      |    +-------+-----------+      +------------+------+     |
-      |            |                               |            |
-      |            |      +------------------+     |            |
-      |            |      |                  |     |            |
-      |            +----->|   fit pipeline   |<----+            |
-      |                   |                  |                  |
-      |                   +---------+--------+                  |
-      | HPO Loop                    |                           |
-       -----------------------------+---------------------------
-                                    |
-                                    |
-                           +--------+-------+
-                           | test pipeline  |
+           +-------------------+
+           |                   |
+     Test  |  Make Test/Train  |
+  +--------+       Split       |
+  |        |                   |
+  |        +-------+-----------+
+  |                |
+  |       ---------+------------------------------------------------------
+  |      |         |Train         --------------------------------------  |
+  |      |         v             |                                      | |
+  |      | +-------------------+ | +---------+    +-------------------+ | |
+  |      | |                   | | |         |    |                   | | |
+  |      | |  Make Validation  | | |  score  +--->|  Define Pipeline  | | |
+  |      | |       Folds       | | |         |    |                   | | |
+  |      | |                   | | +----+----+    |                   | | |
+  |      | +-------+-----------+ |      ^         +------------+------+ | |
+  |      |         |             |      |                      |        | |
+  |      |         |             |  +---+--------------+       |        | |
+  |      |         |             |  |                  |       |        | |
+  |      |         +-------------+->|   fit pipeline   |<------+        | |
+  |      |                       |  |                  |                | |
+  |      |                       |  +----+-------------+                | |
+  |      |                       |       |                     HPO Loop | |
+  |      |                        -------+------------------------------  |
+  |      | Performance Targeting         |                                |
+  |       -------------------------------+--------------------------------
+  |                                      |
+  |                                      v
+  |                        +----------------+
+  +----------------------->| test pipeline  |
                            +----------------+
 #+end_src
 
-#+CAPTION: Machine Learning Pipelin to Implement with Python SciKit-Learn
+#+CAPTION: Machine Learning Pipeline to Implement with Python SciKit-Learn
 #+attr_latex: :width 300
 [[file:./ML_pipe.png]]
 
@@ -209,8 +218,68 @@ using mathematical/logical characterization methods.
 :BEAMER_env: frame
 :BEAMER_opt: allowframebreaks
 :END:
-\small
-\lstinputlisting[language=Python]{pretty_pipeline.py}
+#+latex: \small
+#+begin_src python :export code :eval never-export :tangle ./pretty_pipeline.py
+  import sys, os
+  sys.path.append(os.path.expanduser("~/src/cmcl"))
+  sys.path.append(os.path.expanduser("~/src/spyglass"))
+  import pandas as pd
+  import numpy as np
+  import cmcl
+  from spyglass.model_imaging import parityplot
+  from sklearn.pipeline import make_pipeline
+  from sklearn.compose import ColumnTransformer
+  from sklearn.<module> import NumPreProcessor1
+  from sklearn.<module> import CatPreProcessor1
+  from sklearn.<module> import NumPreProcessor2
+  from sklearn.<module> import CatPreProcessor2
+  from sklearn.<module> import Estimator
+
+  df = pd.read_<data>('./file.<data>')
+  df = df.groupby('Formula', as_index=False).agg(
+      {'bg_eV':'median', 'efficiency':'median'})
+
+  dc = df.ft.comp()
+  dc = dc.assign(label='label')
+
+  numeric_features = dc
+  .select_dtypes(np.number)
+  .columns
+  .to_list()
+  numeric_pipeline = make_pipeline(NumPreProcessor1(),
+                                   NumPreProcessor2())
+  categorical_features = mc
+  .select_dtypes('object')
+  .columns
+  .to_list()
+  catagorical_pipeline = make_pipeline(CatPreProcessor1(),
+                                       CatPreProcessor2())
+
+
+  preprocessor = ColumnTransformer(
+      transformers=[
+          ("num", numeric_pipeline, numeric_features),
+          ("cat", categorical_pipline, categorical_features),
+      ]
+  )
+
+  ss = ShuffleSplit(n_splits=1, train_size=0.8,
+                    random_state=None)
+  train_idx, test_idx = next(ss.split(dc))
+  dc_tr, dc_ts = dc.iloc[train_idx], dc.iloc[test_idx]
+  df_tr, df_ts = df.iloc[train_idx], df.iloc[test_idx]
+
+  pipe = make_pipeline(preprocessor, Estimator())
+
+  pipe.fit(dc_tr, df_tr.<target>)
+
+
+  p, data = parityplot(pipe,
+                       dc_ts, df_ts.<target>.to_frame(),
+                       aspect=1.0)
+  p.figure.show()
+#+end_src
+
 * Feature Engineering
 ** PCA                                                             :B_frame:
 :PROPERTIES:
@@ -218,7 +287,7 @@ using mathematical/logical characterization methods.
 :END:
 *** col                                                             :BMCOL:
 :PROPERTIES:
-:BEAMER_col: 0.8
+:BEAMER_col: 0.75
 :END:
 #+CAPTION: Learn transformation matrix \(U\) to diagonalizes the matrix \(A\).
 #+CAPTION: The Principal Components in \(Q\) corresponding to the largest
@@ -228,7 +297,7 @@ using mathematical/logical characterization methods.
 [[file:comp_ratio_projection.png]]
 *** col                                                             :BMCOL:
 :PROPERTIES:
-:BEAMER_col: 0.2
+:BEAMER_col: 0.25
 :END:
 \[
 UAU^\dag = Q^{-1}SQ
@@ -374,6 +443,9 @@ file:rfr_c_bg.png
 ** COMMENT Support Vector Machine
 ** COMMENT Boltzmann Machines
 ** COMMENT Artificial Neural Network
-* References
-bibliographystyle:plainnat
-bibliography:~/org/bibliotex/bibliotex.bib
+* 
+[[printbibliography:]]
+* Footnotes
+[fn:1][[cite:&russell-2010-artif]]
+[fn:2][[cite:&almora-2020-devic-perfor]]
+[fn:3][[cite:&mannodi-kanakkithodi-2022-data-driven]]

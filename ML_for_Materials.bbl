@@ -1,41 +1,297 @@
-\begin{thebibliography}{3}
-\providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{doi: #1}\else
-  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
 
-\bibitem[Almora et~al.(2020)Almora, Baran, Bazan, Berger, Cabrera, Catchpole,
-  Erten‐Ela, Guo, Hauch, Ho‐Baillie, Jacobsson, Janssen, Kirchartz,
-  Kopidakis, Li, Loi, Lunt, Mathew, McGehee, Min, Mitzi, Nazeeruddin, Nelson,
-  Nogueira, Paetzold, Park, Rand, Rau, Snaith, Unger, Vaillant‐Roca, Yip, and
-  Brabec]{almora-2020-devic-perfor}
-Osbel Almora, Derya Baran, Guillermo~C. Bazan, Christian Berger, Carlos~I.
-  Cabrera, Kylie~R. Catchpole, Sule Erten‐Ela, Fei Guo, Jens Hauch, Anita
-  W.~Y. Ho‐Baillie, T.~Jesper Jacobsson, Rene A.~J. Janssen, Thomas
-  Kirchartz, Nikos Kopidakis, Yongfang Li, Maria~A. Loi, Richard~R. Lunt,
-  Xavier Mathew, Michael~D. McGehee, Jie Min, David~B. Mitzi, Mohammad~K.
-  Nazeeruddin, Jenny Nelson, Ana~F. Nogueira, Ulrich~W. Paetzold, Nam‐Gyu
-  Park, Barry~P. Rand, Uwe Rau, Henry~J. Snaith, Eva Unger, L{\'i}dice
-  Vaillant‐Roca, Hin‐Lap Yip, and Christoph~J. Brabec.
-\newblock Device performance of emerging photovoltaic materials (version 1).
-\newblock \emph{Advanced Energy Materials}, 11\penalty0 (11):\penalty0 2002774,
-  2020.
-\newblock \doi{10.1002/aenm.202002774}.
-\newblock URL \url{http://dx.doi.org/10.1002/aenm.202002774}.
 
-\bibitem[Mannodi-Kanakkithodi and
-  Chan(2022)]{mannodi-kanakkithodi-2022-data-driven}
-Arun Mannodi-Kanakkithodi and Maria K.~Y. Chan.
-\newblock Data-driven design of novel halide perovskite alloys.
-\newblock \emph{Energy Environ. Sci.}, 15:\penalty0 1930--1949, 2022.
-\newblock \doi{10.1039/D1EE02971A}.
-\newblock URL \url{http://dx.doi.org/10.1039/D1EE02971A}.
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{almora-2020-devic-perfor}{article}{}
+      \name{author}{33}{}{%
+        {{hash=fe2b48d8c61e6ad795da598dc3551073}{%
+           family={Almora},
+           familyi={A\bibinitperiod},
+           given={Osbel},
+           giveni={O\bibinitperiod}}}%
+        {{hash=8ede3c4119b67a8d7eab731d7b84c239}{%
+           family={Baran},
+           familyi={B\bibinitperiod},
+           given={Derya},
+           giveni={D\bibinitperiod}}}%
+        {{hash=31d15642497426ac11d65fb494b7ea62}{%
+           family={Bazan},
+           familyi={B\bibinitperiod},
+           given={Guillermo\bibnamedelima C.},
+           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=989e9c75cedce190a8efdde3ba9764ec}{%
+           family={Berger},
+           familyi={B\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+        {{hash=67a9ea5a90ca248536ef7e9fd7360231}{%
+           family={Cabrera},
+           familyi={C\bibinitperiod},
+           given={Carlos\bibnamedelima I.},
+           giveni={C\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=7336939f239f0e99a20efb16a4b4c614}{%
+           family={Catchpole},
+           familyi={C\bibinitperiod},
+           given={Kylie\bibnamedelima R.},
+           giveni={K\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=18d3039b54fe9c5567f49641b865a872}{%
+           family={Erten‐Ela},
+           familyi={E\bibinithyphendelim E\bibinitperiod},
+           given={Sule},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e10c1eafe9a0dd71b4a3a68eda5ca343}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Fei},
+           giveni={F\bibinitperiod}}}%
+        {{hash=ddd036427b78b771ba5bc64fd24e3b28}{%
+           family={Hauch},
+           familyi={H\bibinitperiod},
+           given={Jens},
+           giveni={J\bibinitperiod}}}%
+        {{hash=dea5686bd6e55341eb6a707ae0397e51}{%
+           family={Ho‐Baillie},
+           familyi={H\bibinithyphendelim B\bibinitperiod},
+           given={Anita\bibnamedelimb W.\bibnamedelimi Y.},
+           giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=9251a34a1a3ccbcdeae998b1c3e522be}{%
+           family={Jacobsson},
+           familyi={J\bibinitperiod},
+           given={T.\bibnamedelimi Jesper},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=448fd27fae652b94a433c13c85445c8d}{%
+           family={Janssen},
+           familyi={J\bibinitperiod},
+           given={Rene\bibnamedelimb A.\bibnamedelimi J.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=c955fdb57fa9d70c6f76cb585518e940}{%
+           family={Kirchartz},
+           familyi={K\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c326e3bd5a9a23b444c1184ad4a00a14}{%
+           family={Kopidakis},
+           familyi={K\bibinitperiod},
+           given={Nikos},
+           giveni={N\bibinitperiod}}}%
+        {{hash=c6a16bcb685bb21b31805cffc9cb11d0}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Yongfang},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0d50e745e2ffa353befc15ba4f2fbbda}{%
+           family={Loi},
+           familyi={L\bibinitperiod},
+           given={Maria\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=13f4ce299da2e55b6573f90f66d77c5e}{%
+           family={Lunt},
+           familyi={L\bibinitperiod},
+           given={Richard\bibnamedelima R.},
+           giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=34a7638eb9ef96d7cdc04dd16a511adf}{%
+           family={Mathew},
+           familyi={M\bibinitperiod},
+           given={Xavier},
+           giveni={X\bibinitperiod}}}%
+        {{hash=6e31b3244857de85183080008acad8d5}{%
+           family={McGehee},
+           familyi={M\bibinitperiod},
+           given={Michael\bibnamedelima D.},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=8063e6fbe0a1950ca24286a6acb22456}{%
+           family={Min},
+           familyi={M\bibinitperiod},
+           given={Jie},
+           giveni={J\bibinitperiod}}}%
+        {{hash=b103133616225f68abf3df6317196ad0}{%
+           family={Mitzi},
+           familyi={M\bibinitperiod},
+           given={David\bibnamedelima B.},
+           giveni={D\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=ff22023ff1c2a904077c4c7439ed3b9f}{%
+           family={Nazeeruddin},
+           familyi={N\bibinitperiod},
+           given={Mohammad\bibnamedelima K.},
+           giveni={M\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=cb77a10b6b6734e724fada43d0a432e6}{%
+           family={Nelson},
+           familyi={N\bibinitperiod},
+           given={Jenny},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7ca80cc14467ae5cb597be1d57764632}{%
+           family={Nogueira},
+           familyi={N\bibinitperiod},
+           given={Ana\bibnamedelima F.},
+           giveni={A\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=404a747ddefb13b25e3d8b5b96d1de70}{%
+           family={Paetzold},
+           familyi={P\bibinitperiod},
+           given={Ulrich\bibnamedelima W.},
+           giveni={U\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=cfaee9c396e2f5ab21e5c7cf985adcf7}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Nam‐Gyu},
+           giveni={N\bibinithyphendelim G\bibinitperiod}}}%
+        {{hash=9c307e5bea7e435a45636a54a4ae98b6}{%
+           family={Rand},
+           familyi={R\bibinitperiod},
+           given={Barry\bibnamedelima P.},
+           giveni={B\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=aeebafd608171b79c13a7a8054574c50}{%
+           family={Rau},
+           familyi={R\bibinitperiod},
+           given={Uwe},
+           giveni={U\bibinitperiod}}}%
+        {{hash=8b9ae2afe2804c31360d82d788c3b246}{%
+           family={Snaith},
+           familyi={S\bibinitperiod},
+           given={Henry\bibnamedelima J.},
+           giveni={H\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=772c1ae6d8f469fc92e42a0979ac9394}{%
+           family={Unger},
+           familyi={U\bibinitperiod},
+           given={Eva},
+           giveni={E\bibinitperiod}}}%
+        {{hash=7e0c68961319615d3455cc0034d6c019}{%
+           family={Vaillant‐Roca},
+           familyi={V\bibinithyphendelim R\bibinitperiod},
+           given={Lídice},
+           giveni={L\bibinitperiod}}}%
+        {{hash=e0c68788454dfcbf620324ee4543330e}{%
+           family={Yip},
+           familyi={Y\bibinitperiod},
+           given={Hin‐Lap},
+           giveni={H\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=e478af1f4007160eda2beeb502cceda1}{%
+           family={Brabec},
+           familyi={B\bibinitperiod},
+           given={Christoph\bibnamedelima J.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{58737f73a9d49ff5506dbe9ef2b95683}
+      \strng{fullhash}{ae829b934b30322136766b2bd1f44ec9}
+      \strng{bibnamehash}{58737f73a9d49ff5506dbe9ef2b95683}
+      \strng{authorbibnamehash}{58737f73a9d49ff5506dbe9ef2b95683}
+      \strng{authornamehash}{58737f73a9d49ff5506dbe9ef2b95683}
+      \strng{authorfullhash}{ae829b934b30322136766b2bd1f44ec9}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Advanced Energy Materials}
+      \field{number}{11}
+      \field{title}{Device Performance of Emerging Photovoltaic Materials (Version 1)}
+      \field{volume}{11}
+      \field{year}{2020}
+      \field{pages}{2002774}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1002/aenm.202002774
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1002/aenm.202002774
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1002/aenm.202002774
+      \endverb
+    \endentry
+    \entry{mannodi-kanakkithodi-2022-data-driven}{article}{}
+      \name{author}{2}{}{%
+        {{hash=6b1adb422d271591c8b5a9d0aa21cd00}{%
+           family={Mannodi-Kanakkithodi},
+           familyi={M\bibinithyphendelim K\bibinitperiod},
+           given={Arun},
+           giveni={A\bibinitperiod}}}%
+        {{hash=1f50eaa4a7ec66786f3eb8c6d840e45b}{%
+           family={Chan},
+           familyi={C\bibinitperiod},
+           given={Maria\bibnamedelimb K.\bibnamedelimi Y.},
+           giveni={M\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The Royal Society of Chemistry}%
+      }
+      \strng{namehash}{d3302158c64c3969a3fb0821eb913793}
+      \strng{fullhash}{d3302158c64c3969a3fb0821eb913793}
+      \strng{bibnamehash}{d3302158c64c3969a3fb0821eb913793}
+      \strng{authorbibnamehash}{d3302158c64c3969a3fb0821eb913793}
+      \strng{authornamehash}{d3302158c64c3969a3fb0821eb913793}
+      \strng{authorfullhash}{d3302158c64c3969a3fb0821eb913793}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The great tunability of the properties of halide perovskites presents new opportunities for optoelectronic applications as well as significant challenges associated with exploring combinatorial chemical spaces. In this work{,} we develop a framework powered by high-throughput computations and machine learning for the design and prediction of mixed cation halide perovskite alloys. In a chemical space of ABX3 perovskites with a selected set of options for A{,} B{,} and X species{,} pseudo-cubic structures with B-site mixing are simulated using density functional theory (DFT) and several properties are computed{,} including stability{,} lattice constant{,} band gap{,} vacancy formation energy{,} refractive index{,} and optical absorption spectrum{,} using both semi-local and hybrid functionals. Neural networks (NN) are used to train predictive models for every property using tabulated elemental properties of A{,} B{,} and X site species as descriptors. Starting from a DFT dataset of 229 points{,} we use the trained NN models to predict the structural{,} energetic{,} electronic{,} and optical properties of an extensive dataset of 17 955 compounds{,} and perform high-throughput screening in terms of stability{,} band gap{,} and defect tolerance{,} to obtain 392 promising compounds that are ranked as potential absorbers according to their photovoltaic figure of merit. Compositional trends in the screened set of attractive mixed cation halide perovskites are revealed and additional computations are performed on selected compounds. The data-driven design framework developed here is promising for designing novel mixed compositions and can be extended to a wider perovskite chemical space in terms of A{,} B{,} and X species{,} different kinds of mixing at the A{,} B{,} or X sites{,} non-cubic phases{,} and other properties of interest.}
+      \field{issue}{5}
+      \field{journaltitle}{Energy Environ. Sci.}
+      \field{title}{Data-Driven Design of Novel Halide Perovskite Alloys}
+      \field{volume}{15}
+      \field{year}{2022}
+      \field{pages}{1930\bibrangedash 1949}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1039/D1EE02971A
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1039/D1EE02971A
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1039/D1EE02971A
+      \endverb
+    \endentry
+    \entry{russell-2010-artif}{book}{}
+      \name{author}{2}{}{%
+        {{hash=143fa183327d9fcd9de18eec99d6ca97}{%
+           family={Russell},
+           familyi={R\bibinitperiod},
+           given={Stuart},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5de798d5fa3c0236c0478134cd23f52a}{%
+           family={Norvig},
+           familyi={N\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Upper Saddle River, New Jersey}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{b280605b721b4ebcba5395298499f924}
+      \strng{fullhash}{b280605b721b4ebcba5395298499f924}
+      \strng{bibnamehash}{b280605b721b4ebcba5395298499f924}
+      \strng{authorbibnamehash}{b280605b721b4ebcba5395298499f924}
+      \strng{authornamehash}{b280605b721b4ebcba5395298499f924}
+      \strng{authorfullhash}{b280605b721b4ebcba5395298499f924}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780136042594}
+      \field{title}{Artificial intelligence : a modern approach}
+      \field{year}{2010}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
 
-\bibitem[Russell and Norvig(2010)]{russell-2010-artif}
-Stuart Russell and Peter Norvig.
-\newblock \emph{Artificial intelligence : a modern approach}.
-\newblock Prentice Hall, Upper Saddle River, New Jersey, 2010.
-\newblock ISBN 9780136042594.
-
-\end{thebibliography}

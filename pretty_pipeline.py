@@ -15,8 +15,7 @@ from sklearn.<module> import Estimator
 
 df = pd.read_<data>('./file.<data>')
 df = df.groupby('Formula', as_index=False).agg(
-    {'bg_eV':'median',
-     'efficiency':'median'})
+    {'bg_eV':'median', 'efficiency':'median'})
 
 dc = df.ft.comp()
 dc = dc.assign(label='label')
