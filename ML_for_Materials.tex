@@ -1,4 +1,4 @@
-% Created 2022-06-20 Mon 23:30
+% Created 2022-06-21 Tue 10:32
 % Intended LaTeX compiler: pdflatex
 \documentclass[10pt, compress]{beamer}
 \usepackage[utf8]{inputenc}
@@ -12,7 +12,6 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
-\usepackage{listings}
 \institute[Mannodi Group]{\inst{1} Purdue Materials Science and Engineering Mannodi Group}
 \mode<beamer>{\usetheme{Warsaw}}
 \useoutertheme{miniframes}
@@ -52,8 +51,8 @@ natbib=true,
   \insertshorttitle\hfill
   \insertframenumber\,/\,\inserttotalframenumber}
 \section{AI Background}
-\label{sec:org16b963f}
-\begin{frame}[label={sec:org711ad2f}]{Artificial Intelligence}
+\label{sec:org0f7a1a6}
+\begin{frame}[label={sec:org6b8314f}]{Artificial Intelligence}
 \begin{block}{The Four Approached to AI}
 \begin{center}
 \begin{tabular}{ll}
@@ -73,7 +72,7 @@ Acting Humanly & Acting Rationally\\
 -- neuromorphic algorithms & -- inference + reflex\\
  & -- inference vs deduction\\
 \end{tabular}
-\end{center}\footnotetext[1]{\label{org4f390e5}\cite{russell-2010-artif}}
+\end{center}\footnotetext[1]{\label{org884469e}\cite{russell-2010-artif}}
 \end{block}
 \end{frame}
 \begin{frame}[allowframebreaks]{Machine Learning}
@@ -114,7 +113,7 @@ using mathematical/logical characterization methods.
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org39b3fc2}]{Inverse Design}
+\begin{frame}[label={sec:orgce37025}]{Inverse Design}
 \begin{block}{A Type of AI Implementation}
 \begin{description}
 \item[{senses}] maps points in many dimensions
@@ -124,14 +123,14 @@ using mathematical/logical characterization methods.
 \end{block}
 \end{frame}
 \section{Chemistry Background}
-\label{sec:org9cfed53}
-\begin{frame}[label={sec:org8b10dd3}]{Perovskite Structure and Chemistry}
+\label{sec:org61d5189}
+\begin{frame}[label={sec:org1ed4f13}]{Perovskite Structure and Chemistry}
 Example\footnote{\cite{mannodi-kanakkithodi-2022-data-driven}} of hybrid organic-inorganic MAPbI\textsubscript{3}
 \begin{center}
 \includegraphics[width=190]{cubic_perovskite.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orgf15de3e}]{Our Dataset}
+\begin{frame}[label={sec:org887e397}]{Our Dataset}
 \begin{columns}
 \begin{column}{0.35\columnwidth}
 \begin{block}{DFT Simulations}
@@ -193,8 +192,8 @@ Comparing computational with experimental\footnote{\cite{almora-2020-devic-perfo
 \end{columns}
 \end{frame}
 \section{Pipeline}
-\label{sec:org8798572}
-\begin{frame}[label={sec:org2257953}]{Data Pre-Processing}
+\label{sec:orgc1d00d5}
+\begin{frame}[label={sec:org5af1f67}]{Data Pre-Processing}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=300]{./data_proc.png}
@@ -202,7 +201,7 @@ Comparing computational with experimental\footnote{\cite{almora-2020-devic-perfo
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org1ebb15c}]{Machine Learning Pipeline}
+\begin{frame}[label={sec:org11570a5}]{Machine Learning Pipeline}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=300]{./ML_pipe.png}
@@ -211,8 +210,7 @@ Comparing computational with experimental\footnote{\cite{almora-2020-devic-perfo
 \end{frame}
 
 \begin{frame}[fragile,allowframebreaks]{Implementation in Jupyter Python}
- \small
-\lstset{language=Python,label= ,caption= ,captionpos=b,numbers=none}
+ \lstset{language=Python,label= ,caption={Scikit-Learn mock-setup and pandas data loading + grouping},captionpos=b,numbers=none}
 \begin{lstlisting}
 import sys, os
 sys.path.append(os.path.expanduser("~/src/cmcl"))
@@ -232,7 +230,10 @@ from sklearn.<module> import Estimator
 df = pd.read_<data>('./file.<data>')
 df = df.groupby('Formula', as_index=False).agg(
     {'bg_eV':'median', 'efficiency':'median'})
+\end{lstlisting}
 
+\lstset{language=Python,label= ,caption={Computing Features with cmcl and Feature Engineering},captionpos=b,numbers=none}
+\begin{lstlisting}
 dc = df.ft.comp()
 dc = dc.assign(label='label')
 
@@ -248,7 +249,15 @@ categorical_features = mc
 .to_list()
 catagorical_pipeline = make_pipeline(CatPreProcessor1(),
 				     CatPreProcessor2())
+\end{lstlisting}
 
+\lstset{language=Python,label= ,caption={make Test/Train Split, Assemble, and Fit pipeline},captionpos=b,numbers=none}
+\begin{lstlisting}
+ss = ShuffleSplit(n_splits=1, train_size=0.8,
+		  random_state=None)
+train_idx, test_idx = next(ss.split(dc))
+dc_tr, dc_ts = dc.iloc[train_idx], dc.iloc[test_idx]
+df_tr, df_ts = df.iloc[train_idx], df.iloc[test_idx]
 
 preprocessor = ColumnTransformer(
     transformers=[
@@ -257,17 +266,13 @@ preprocessor = ColumnTransformer(
     ]
 )
 
-ss = ShuffleSplit(n_splits=1, train_size=0.8,
-		  random_state=None)
-train_idx, test_idx = next(ss.split(dc))
-dc_tr, dc_ts = dc.iloc[train_idx], dc.iloc[test_idx]
-df_tr, df_ts = df.iloc[train_idx], df.iloc[test_idx]
-
 pipe = make_pipeline(preprocessor, Estimator())
 
 pipe.fit(dc_tr, df_tr.<target>)
+\end{lstlisting}
 
-
+\lstset{language=Python,label= ,caption={Evaluate Pipeline using Spyglass},captionpos=b,numbers=none}
+\begin{lstlisting}
 p, data = parityplot(pipe,
 		     dc_ts, df_ts.<target>.to_frame(),
 		     aspect=1.0)
@@ -276,8 +281,8 @@ p.figure.show()
 \end{frame}
 
 \section{Feature Engineering}
-\label{sec:orgdeb2d5a}
-\begin{frame}[label={sec:org74a2901}]{PCA}
+\label{sec:orgd2d569e}
+\begin{frame}[label={sec:org71bf433}]{PCA}
 \begin{columns}
 \begin{column}{0.75\columnwidth}
 \begin{figure}[htbp]
@@ -293,14 +298,14 @@ UAU^\dag = Q^{-1}SQ
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:org1ae1622}]{tSNE}
+\begin{frame}[label={sec:org300ba6c}]{tSNE}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{tsne_comp_DecoE_clusters.png}
 \caption{Learn a low-dimensional (2 or 3D) embedding space in which statistical similarity governs the proximity of high-dimensional data points}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:orgb8792b6}]{UMAP}
+\begin{frame}[label={sec:org4d3186f}]{UMAP}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{umap_projection.png}
@@ -308,7 +313,7 @@ UAU^\dag = Q^{-1}SQ
 \end{figure}
 \end{frame}
 \section{Supervised Architectures}
-\label{sec:org87d8927}
+\label{sec:org6c21e05}
 \begin{frame}[allowframebreaks]{Linear regressions on BG}
 \begin{figure}[htbp]
 \centering
@@ -322,7 +327,7 @@ UAU^\dag = Q^{-1}SQ
 \caption{elasticnet determines \(\vec{w}\) as before, but also works to sparsify the model}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:orgf4aaa14}]{OLS weights}
+\begin{frame}[label={sec:org6d7f893}]{OLS weights}
 \begin{columns}
 \begin{column}{0.7\columnwidth}
 \begin{center}
@@ -361,7 +366,7 @@ X & 2.007905\\
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org7a2478b}]{elasticnet weights}
+\begin{frame}[label={sec:org6452e0d}]{elasticnet weights}
 \begin{columns}
 \begin{column}{0.7\columnwidth}
 \begin{center}
@@ -406,6 +411,10 @@ X & 1.136281\\
 \caption{RFR initializes an ensemble of Decision Trees and averages their results to return its prediction. This leverages the DT's ability to strongly bias itself to the data and relies on randomness to explain variance in the underlying process}
 \end{figure}
 \end{frame}
+\subsection{RFR Feature Importance}
+\label{sec:org6403c1f}
+\subsection{}
+\label{sec:org859dc4a}
 \begin{frame}[allowframebreaks]{Gaussian Process or BG}
 \begin{figure}[htbp]
 \centering
@@ -422,6 +431,6 @@ X & 1.136281\\
 \end{frame}
 
 \section{}
-\label{sec:orgd37d770}
+\label{sec:org2564950}
 \printbibliography
 \end{document}

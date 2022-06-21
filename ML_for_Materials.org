@@ -11,8 +11,6 @@
 #+select_tags: export
 #+exclude_tags: noexport
 #+creator: Emacs 29.0.50 (Org mode 9.5.3)
-#+latex_header:\usepackage{listings}
-#+latex_engraved-theme: t
 #+setupfile: ~/org/mrg_beamer_header.org
 #+include: ~/org/mrg_beamer_frontmatter.org
 * AI Background
@@ -218,7 +216,8 @@ Comparing computational with experimental[fn:2] band gaps
 :BEAMER_env: frame
 :BEAMER_opt: allowframebreaks
 :END:
-#+latex: \small
+#+CAPTION: Scikit-Learn mock-setup and pandas data loading + grouping
+#+attr_latex: :engraved-theme t
 #+begin_src python :export code :eval never-export :tangle ./pretty_pipeline.py
   import sys, os
   sys.path.append(os.path.expanduser("~/src/cmcl"))
@@ -238,7 +237,11 @@ Comparing computational with experimental[fn:2] band gaps
   df = pd.read_<data>('./file.<data>')
   df = df.groupby('Formula', as_index=False).agg(
       {'bg_eV':'median', 'efficiency':'median'})
+#+end_src
 
+#+CAPTION: Computing Features with cmcl and Feature Engineering
+#+attr_latex: :engraved-theme t
+#+begin_src python :export code :eval never-export :tangle ./pretty_pipeline.py
   dc = df.ft.comp()
   dc = dc.assign(label='label')
 
@@ -254,7 +257,16 @@ Comparing computational with experimental[fn:2] band gaps
   .to_list()
   catagorical_pipeline = make_pipeline(CatPreProcessor1(),
                                        CatPreProcessor2())
+#+end_src
 
+#+CAPTION: make Test/Train Split, Assemble, and Fit pipeline
+#+attr_latex: :engraved-theme t
+#+begin_src python :export code :eval never-export :tangle ./pretty_pipeline.py
+  ss = ShuffleSplit(n_splits=1, train_size=0.8,
+                    random_state=None)
+  train_idx, test_idx = next(ss.split(dc))
+  dc_tr, dc_ts = dc.iloc[train_idx], dc.iloc[test_idx]
+  df_tr, df_ts = df.iloc[train_idx], df.iloc[test_idx]
 
   preprocessor = ColumnTransformer(
       transformers=[
@@ -263,17 +275,14 @@ Comparing computational with experimental[fn:2] band gaps
       ]
   )
 
-  ss = ShuffleSplit(n_splits=1, train_size=0.8,
-                    random_state=None)
-  train_idx, test_idx = next(ss.split(dc))
-  dc_tr, dc_ts = dc.iloc[train_idx], dc.iloc[test_idx]
-  df_tr, df_ts = df.iloc[train_idx], df.iloc[test_idx]
-
   pipe = make_pipeline(preprocessor, Estimator())
 
   pipe.fit(dc_tr, df_tr.<target>)
+#+end_src
 
-
+#+CAPTION: Evaluate Pipeline using Spyglass
+#+attr_latex: :engraved-theme t
+#+begin_src python :export code :eval never-export :tangle ./pretty_pipeline.py
   p, data = parityplot(pipe,
                        dc_ts, df_ts.<target>.to_frame(),
                        aspect=1.0)
@@ -320,7 +329,7 @@ UAU^\dag = Q^{-1}SQ
 #+attr_latex: :width 200
 file:umap_projection.png
 * Supervised Architectures
-** Linear regressions on BG                                        :B_frame:
+** Linear regressions BG Test                                      :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
 :BEAMER_opt: allowframebreaks
@@ -335,6 +344,10 @@ file:umap_projection.png
 #+CAPTION: to sparsify the model
 #+attr_latex: :width 185
 [[file:elastic_bg_c.png]]
+** Linear regression Test Scores                                   :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
 ** OLS weights                                                     :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
@@ -421,8 +434,19 @@ file:umap_projection.png
 #+CAPTION: explain variance in the underlying process
 #+attr_latex: :width 170
 file:rfr_c_bg.png
-** COMMENT SISSO
+** RFR Feature Importance                                          :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+** COMMENT SISSO                                                   :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
 *** Analogy to Non-Dimensional Analysis
+** COMMENT Sparsified Selection                                            :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
 ** Gaussian Process or BG                                          :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
@@ -443,6 +467,22 @@ file:rfr_c_bg.png
 ** COMMENT Support Vector Machine
 ** COMMENT Boltzmann Machines
 ** COMMENT Artificial Neural Network
+** Comparing Test Scores                                           :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+#+CAPTION: Optimized Models Quantitative Performance Comparison
+|            | RFR       |
+|------------+-----------|
+| r2         |  0.975133 |
+| ev         |  0.975228 |
+| maxerr     | -0.873043 |
+| rmse       | -0.207796 |
+| A_rmse     | -0.143580 |
+| B_rmse     | -0.311177 |
+| X_rmse     | -0.130350 |
+| BandX_rmse | -0.196648 |
+| Pure_rmse  | -0.147384 |
 * 
 [[printbibliography:]]
 * Footnotes
