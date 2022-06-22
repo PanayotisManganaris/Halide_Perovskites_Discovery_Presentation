@@ -10,6 +10,8 @@
 #+language: en
 #+select_tags: export
 #+exclude_tags: noexport
+#+latex_header: \usepackage{listings}
+#+latex_header: \usepackage{color}
 #+creator: Emacs 29.0.50 (Org mode 9.5.3)
 #+setupfile: ~/org/mrg_beamer_header.org
 #+include: ~/org/mrg_beamer_frontmatter.org
@@ -216,6 +218,7 @@ Comparing computational with experimental[fn:2] band gaps
 :BEAMER_env: frame
 :BEAMER_opt: allowframebreaks
 :END:
+#+latex: \tiny
 #+CAPTION: Scikit-Learn mock-setup and pandas data loading + grouping
 #+attr_latex: :engraved-theme t
 #+begin_src python :export code :eval never-export :tangle ./pretty_pipeline.py
@@ -245,16 +248,10 @@ Comparing computational with experimental[fn:2] band gaps
   dc = df.ft.comp()
   dc = dc.assign(label='label')
 
-  numeric_features = dc
-  .select_dtypes(np.number)
-  .columns
-  .to_list()
+  numeric_features = dc.select_dtypes(np.number).columns.to_list()
   numeric_pipeline = make_pipeline(NumPreProcessor1(),
                                    NumPreProcessor2())
-  categorical_features = mc
-  .select_dtypes('object')
-  .columns
-  .to_list()
+  categorical_features = mc.select_dtypes('object').columns.to_list()
   catagorical_pipeline = make_pipeline(CatPreProcessor1(),
                                        CatPreProcessor2())
 #+end_src
@@ -262,8 +259,7 @@ Comparing computational with experimental[fn:2] band gaps
 #+CAPTION: make Test/Train Split, Assemble, and Fit pipeline
 #+attr_latex: :engraved-theme t
 #+begin_src python :export code :eval never-export :tangle ./pretty_pipeline.py
-  ss = ShuffleSplit(n_splits=1, train_size=0.8,
-                    random_state=None)
+  ss = ShuffleSplit(n_splits=1, train_size=0.8, random_state=None)
   train_idx, test_idx = next(ss.split(dc))
   dc_tr, dc_ts = dc.iloc[train_idx], dc.iloc[test_idx]
   df_tr, df_ts = df.iloc[train_idx], df.iloc[test_idx]
@@ -274,9 +270,7 @@ Comparing computational with experimental[fn:2] band gaps
           ("cat", categorical_pipline, categorical_features),
       ]
   )
-
   pipe = make_pipeline(preprocessor, Estimator())
-
   pipe.fit(dc_tr, df_tr.<target>)
 #+end_src
 
@@ -344,10 +338,6 @@ file:umap_projection.png
 #+CAPTION: to sparsify the model
 #+attr_latex: :width 185
 [[file:elastic_bg_c.png]]
-** Linear regression Test Scores                                   :B_frame:
-:PROPERTIES:
-:BEAMER_env: frame
-:END:
 ** OLS weights                                                     :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
@@ -443,7 +433,7 @@ file:rfr_c_bg.png
 :BEAMER_env: frame
 :END:
 *** Analogy to Non-Dimensional Analysis
-** COMMENT Sparsified Selection                                            :B_frame:
+** COMMENT Sparsified Selection                                    :B_frame:
 :PROPERTIES:
 :BEAMER_env: frame
 :END:
@@ -472,17 +462,17 @@ file:rfr_c_bg.png
 :BEAMER_env: frame
 :END:
 #+CAPTION: Optimized Models Quantitative Performance Comparison
-|            | RFR       |
-|------------+-----------|
-| r2         |  0.975133 |
-| ev         |  0.975228 |
-| maxerr     | -0.873043 |
-| rmse       | -0.207796 |
-| A_rmse     | -0.143580 |
-| B_rmse     | -0.311177 |
-| X_rmse     | -0.130350 |
-| BandX_rmse | -0.196648 |
-| Pure_rmse  | -0.147384 |
+|            | OLS | elasticnet |       RFR | GPR |
+|------------+-----+------------+-----------+-----|
+| r2         |     |            |  0.975133 |     |
+| ev         |     |            |  0.975228 |     |
+| maxerr     |     |            | -0.873043 |     |
+| rmse       |     |            | -0.207796 |     |
+| A_rmse     |     |            | -0.143580 |     |
+| B_rmse     |     |            | -0.311177 |     |
+| X_rmse     |     |            | -0.130350 |     |
+| BandX_rmse |     |            | -0.196648 |     |
+| Pure_rmse  |     |            | -0.147384 |     |
 * 
 [[printbibliography:]]
 * Footnotes
