@@ -107,9 +107,9 @@ Example[fn:3] of hybrid organic-inorganic MAPbI_3
 1. geometry optimization
 2. Static band structure and optical absorption
 **** Levels of Theory
-- PBE
-- HSE06
-- PBE+HSE06(SOC)
+- PBE+PBE
+- HSE+HSE06
+- HSE+HSE06(SOC)
 - Experimental
 *** col                                                             :BMCOL:
 :PROPERTIES:
@@ -462,17 +462,16 @@ file:rfr_c_bg.png
 :BEAMER_env: frame
 :END:
 #+CAPTION: Optimized Models Quantitative Performance Comparison
-|            | OLS | elasticnet |       RFR | GPR |
-|------------+-----+------------+-----------+-----|
-| r2         |     |            |  0.975133 |     |
-| ev         |     |            |  0.975228 |     |
-| maxerr     |     |            | -0.873043 |     |
-| rmse       |     |            | -0.207796 |     |
-| A_rmse     |     |            | -0.143580 |     |
-| B_rmse     |     |            | -0.311177 |     |
-| X_rmse     |     |            | -0.130350 |     |
-| BandX_rmse |     |            | -0.196648 |     |
-| Pure_rmse  |     |            | -0.147384 |     |
+|           |       OLS | elasticnet |       RFR | GPR |
+|-----------+-----------+------------+-----------+-----|
+| r2        |  0.750403 |   0.750403 |  0.975133 |     |
+| ev        |  0.751708 |   0.751708 |  0.975228 |     |
+| maxerr    | -2.984809 |  -2.984809 | -0.873043 |     |
+| rmse      | -0.770263 |  -0.770263 | -0.207796 |     |
+| A_rmse    | -0.793173 |  -0.793173 | -0.143580 |     |
+| B_rmse    | -0.720543 |  -0.720543 | -0.311177 |     |
+| X_rmse    | -0.703632 |  -0.703632 | -0.130350 |     |
+| Pure_rmse | -0.849593 |  -0.849593 | -0.147384 |     |
 * 
 [[printbibliography:]]
 * Footnotes

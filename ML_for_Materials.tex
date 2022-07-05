@@ -1,4 +1,4 @@
-% Created 2022-06-21 Tue 22:58
+% Created 2022-07-01 Fri 12:01
 % Intended LaTeX compiler: pdflatex
 \documentclass[10pt, compress]{beamer}
 \usepackage[utf8]{inputenc}
@@ -53,8 +53,8 @@ natbib=true,
   \insertshorttitle\hfill
   \insertframenumber\,/\,\inserttotalframenumber}
 \section{AI Background}
-\label{sec:org6410a51}
-\begin{frame}[label={sec:orgdd7baa4}]{Artificial Intelligence}
+\label{sec:org116ed04}
+\begin{frame}[label={sec:orgaa80e30}]{Artificial Intelligence}
 \begin{block}{The Four Approached to AI}
 \begin{center}
 \begin{tabular}{ll}
@@ -74,7 +74,7 @@ Acting Humanly & Acting Rationally\\
 -- neuromorphic algorithms & -- inference + reflex\\
  & -- inference vs deduction\\
 \end{tabular}
-\end{center}\footnotetext[1]{\label{org64d26db}\cite{russell-2010-artif}}
+\end{center}\footnotetext[1]{\label{org0d0c418}\cite{russell-2010-artif}}
 \end{block}
 \end{frame}
 \begin{frame}[allowframebreaks]{Machine Learning}
@@ -115,7 +115,7 @@ using mathematical/logical characterization methods.
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org2c00dca}]{Inverse Design}
+\begin{frame}[label={sec:orga0647a3}]{Inverse Design}
 \begin{block}{A Type of AI Implementation}
 \begin{description}
 \item[{senses}] maps points in many dimensions
@@ -125,14 +125,14 @@ using mathematical/logical characterization methods.
 \end{block}
 \end{frame}
 \section{Chemistry Background}
-\label{sec:org63a54a8}
-\begin{frame}[label={sec:org9e2de38}]{Perovskite Structure and Chemistry}
+\label{sec:org52381b5}
+\begin{frame}[label={sec:org712a74c}]{Perovskite Structure and Chemistry}
 Example\footnote{\cite{mannodi-kanakkithodi-2022-data-driven}} of hybrid organic-inorganic MAPbI\textsubscript{3}
 \begin{center}
 \includegraphics[width=190]{cubic_perovskite.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org55d9574}]{Our Dataset}
+\begin{frame}[label={sec:org640d57c}]{Our Dataset}
 \begin{columns}
 \begin{column}{0.35\columnwidth}
 \begin{block}{DFT Simulations}
@@ -194,8 +194,8 @@ Comparing computational with experimental\footnote{\cite{almora-2020-devic-perfo
 \end{columns}
 \end{frame}
 \section{Pipeline}
-\label{sec:org1cb9308}
-\begin{frame}[label={sec:org1681525}]{Data Pre-Processing}
+\label{sec:org417f703}
+\begin{frame}[label={sec:org4c45638}]{Data Pre-Processing}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=300]{./data_proc.png}
@@ -203,7 +203,7 @@ Comparing computational with experimental\footnote{\cite{almora-2020-devic-perfo
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org7ff007d}]{Machine Learning Pipeline}
+\begin{frame}[label={sec:orgea4b5a3}]{Machine Learning Pipeline}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=300]{./ML_pipe.png}
@@ -275,8 +275,8 @@ p.figure.show()
 \end{frame}
 
 \section{Feature Engineering}
-\label{sec:org9279c31}
-\begin{frame}[label={sec:orgffa6d99}]{PCA}
+\label{sec:orgd4c1724}
+\begin{frame}[label={sec:orgf7474ed}]{PCA}
 \begin{columns}
 \begin{column}{0.75\columnwidth}
 \begin{figure}[htbp]
@@ -292,14 +292,14 @@ UAU^\dag = Q^{-1}SQ
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:orgf24e0e3}]{tSNE}
+\begin{frame}[label={sec:org6f7921b}]{tSNE}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{tsne_comp_DecoE_clusters.png}
 \caption{Learn a low-dimensional (2 or 3D) embedding space in which statistical similarity governs the proximity of high-dimensional data points}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:orgdabc1e2}]{UMAP}
+\begin{frame}[label={sec:org22ae33a}]{UMAP}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=200]{umap_projection.png}
@@ -307,7 +307,7 @@ UAU^\dag = Q^{-1}SQ
 \end{figure}
 \end{frame}
 \section{Supervised Architectures}
-\label{sec:orgdd1f774}
+\label{sec:orgbcf7b38}
 \begin{frame}[allowframebreaks]{Linear regressions BG Test}
 \begin{figure}[htbp]
 \centering
@@ -321,7 +321,7 @@ UAU^\dag = Q^{-1}SQ
 \caption{elasticnet determines \(\vec{w}\) as before, but also works to sparsify the model}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:orgbf158e6}]{OLS weights}
+\begin{frame}[label={sec:org229b90c}]{OLS weights}
 \begin{columns}
 \begin{column}{0.7\columnwidth}
 \begin{center}
@@ -360,7 +360,7 @@ X & 2.007905\\
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org59faa31}]{elasticnet weights}
+\begin{frame}[label={sec:orga384cc7}]{elasticnet weights}
 \begin{columns}
 \begin{column}{0.7\columnwidth}
 \begin{center}
@@ -405,7 +405,7 @@ X & 1.136281\\
 \caption{RFR initializes an ensemble of Decision Trees and averages their results to return its prediction. This leverages the DT's ability to strongly bias itself to the data and relies on randomness to explain variance in the underlying process}
 \end{figure}
 \end{frame}
-\begin{frame}[label={sec:org43565ef}]{RFR Feature Importance}
+\begin{frame}[label={sec:orgbdefde0}]{RFR Feature Importance}
 \end{frame}
 \begin{frame}[allowframebreaks]{Gaussian Process or BG}
 \begin{figure}[htbp]
@@ -422,26 +422,25 @@ X & 1.136281\\
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:orgfd89f71}]{Comparing Test Scores}
+\begin{frame}[label={sec:org4752505}]{Comparing Test Scores}
 \begin{table}[htbp]
 \caption{Optimized Models Quantitative Performance Comparison}
 \centering
-\begin{tabular}{lllrl}
+\begin{tabular}{lrrrl}
  & OLS & elasticnet & RFR & GPR\\
 \hline
-r2 &  &  & 0.975133 & \\
-ev &  &  & 0.975228 & \\
-maxerr &  &  & -0.873043 & \\
-rmse &  &  & -0.207796 & \\
-A\textsubscript{rmse} &  &  & -0.143580 & \\
-B\textsubscript{rmse} &  &  & -0.311177 & \\
-X\textsubscript{rmse} &  &  & -0.130350 & \\
-BandX\textsubscript{rmse} &  &  & -0.196648 & \\
-Pure\textsubscript{rmse} &  &  & -0.147384 & \\
+r2 & 0.750403 & 0.750403 & 0.975133 & \\
+ev & 0.751708 & 0.751708 & 0.975228 & \\
+maxerr & -2.984809 & -2.984809 & -0.873043 & \\
+rmse & -0.770263 & -0.770263 & -0.207796 & \\
+A\textsubscript{rmse} & -0.793173 & -0.793173 & -0.143580 & \\
+B\textsubscript{rmse} & -0.720543 & -0.720543 & -0.311177 & \\
+X\textsubscript{rmse} & -0.703632 & -0.703632 & -0.130350 & \\
+Pure\textsubscript{rmse} & -0.849593 & -0.849593 & -0.147384 & \\
 \end{tabular}
 \end{table}
 \end{frame}
 \section{}
-\label{sec:org0c25222}
+\label{sec:org5a7a7dc}
 \printbibliography
 \end{document}
